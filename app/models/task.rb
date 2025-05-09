@@ -23,6 +23,15 @@ class Task < ApplicationRecord
     validates :category, inclusion: { in: CATEGORIES }
     validates :color, inclusion: { in: COLORS }
 
+    def toggle_execution!(data)
+        log = task_logs.find_by(executed_on: data)
+        if log
+            log.destroy
+        else
+            task_logs.create!(executed_on: data)
+        end
+    end
+
     def total_days
         (end_date - start_date).to_i + 1
     end

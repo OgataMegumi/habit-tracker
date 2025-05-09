@@ -2,13 +2,10 @@ class TaskLogsController < ApplicationController
     before_action :set_task
 
     def create
-        @task.task_logs.create!(executed_on: Date.parse(params[:executed_on]))
+        @task.toggle_execution!(params[:executed_on])
         head :ok
-    end
-
-    def destroy
-        @task.task_logs.where(executed_on: Date.parse(params[:executed_on])).destroy_all
-        head :ok
+    rescue ActiveRecord::RecordInvalid => e
+        render json: { error: e.message }, status: :unprocessable_entity    
     end
 
     private
