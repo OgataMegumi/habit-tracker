@@ -4,9 +4,9 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 WORKDIR /app
 
-COPY ./app/Gemfile ./app/Gemfile.lock ./
+COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install
 
-COPY ./app /app
+COPY . .
 
 CMD ["bash"]

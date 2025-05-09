@@ -1,4 +1,5 @@
-version: 2
+docker exec -it habit-tracker-web-1 bash
+ls /app/app/controllersversion: 2
 updates:
 - package-ecosystem: bundler
   directory: "/"
