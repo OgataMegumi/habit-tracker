@@ -3,9 +3,10 @@ class TaskLogsController < ApplicationController
 
     def create
         @task.toggle_execution!(params[:executed_on])
-        head :ok
-    rescue ActiveRecord::RecordInvalid => e
-        render json: { error: e.message }, status: :unprocessable_entity    
+        respond_to do |format|
+            format.js
+            format.html { redirect_to task_path(@task) }
+        end
     end
 
     private
