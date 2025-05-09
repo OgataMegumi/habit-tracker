@@ -3,7 +3,7 @@ services:
     build: .
     command: bash -c "cd /app && ./bin/rails server -b 0.0.0.0"
     volumes:
-      - ./app:/app
+      - .:/app
     ports:
       - "3000:3000"
     depends_on:
