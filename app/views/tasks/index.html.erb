@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>タイトル</th>
+      <th>色</th>
       <th>カテゴリ</th>
       <th>期間</th>
       <th>進捗</th>
@@ -15,6 +16,9 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
+        <td style="background-color: <%= task.color_code %>;">
+          <%= task.color %>
+        </td>
         <td><%= task.category %></td>
         <td><%= task.start_date&.to_date %> ～ <%= task.end_date&.to_date %></td>
         <td><%= task.progress_percentage %><td>
@@ -49,7 +53,7 @@
           <%= date.day %>
           <% @tasks.each do |task| %>
             <% if task.task_logs.exists?(executed_on: date) %>
-              <span class="circle-indicator">●</span> <!-- チェックされた日に丸印を表示 -->
+              <span class="circle-indicator" style="background-color: <%= task.color_code %>;">⚪︎</span> <!-- チェックされた日に丸印を表示 -->
             <% end %>
           <% end %>
         </td>
