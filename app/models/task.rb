@@ -44,4 +44,10 @@ class Task < ApplicationRecord
         return 0 if total_days.zero?
         (executed_days.to_f / total_days * 100).round(1)
     end
+
+    def self.dates_in_current_month
+        start_date = Date.today.beginning_of_month
+        end_date = Date.today.end_of_month
+        (start_date..end_date).to_a
+    end
 end

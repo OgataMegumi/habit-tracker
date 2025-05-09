@@ -3,6 +3,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+
+    # 今月の日付を取得
+    @dates_in_month = Task.dates_in_current_month
   end
 
   def show

@@ -26,3 +26,35 @@
     <% end %>
   </tbody>
 </table>
+
+<h1>今月のカレンダー</h1>
+
+<table class="calendar">
+  <thead>
+    <tr>
+      <th>日</th>
+      <th>月</th>
+      <th>火</th>
+      <th>水</th>
+      <th>木</th>
+      <th>金</th>
+      <th>土</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @dates_in_month.each_slice(7) do |week| %>
+    <tr>
+      <% week.each do |date| %>
+        <td class="<%= 'checked' if @tasks.any? { |task| task.task_logs.exists?(executed_on: date) } %>">
+          <%= date.day %>
+          <% @tasks.each do |task| %>
+            <% if task.task_logs.exists?(executed_on: date) %>
+              <span class="circle-indicator">●</span> <!-- チェックされた日に丸印を表示 -->
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>
