@@ -5,7 +5,11 @@
         <%= f.label :category %>
         <%= f.select :category, Task::CATEGORIES %>
     </div>
-    <div><%= f.label :frequency %><br><%= f.text_field :frequency %></div>
+    <div>
+        <%= f.label :frequency_unit %>
+        <%= f.select :frequency_number, Task::FREQUENCY_RANGE %>
+        <%= f.select :frequency_unit, Task::FREQUENCY_UNITS_LIST %> に1回
+    </div>
     <div><%= f.label :message %><br><%= f.text_area :message %></div>
     <div><%= f.label :start_date %><br><%= f.datetime_select :start_date %></div>
     <div><%= f.label :end_date %><br><%= f.datetime_select :end_date %></div>

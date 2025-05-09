@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_064956) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_074749) do
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -22,6 +22,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_064956) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "frequency_number"
+    t.string "frequency_unit"
+    t.float "frequency_in_days"
   end
 
   create_table "users", force: :cascade do |t|
