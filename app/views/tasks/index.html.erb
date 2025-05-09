@@ -1,6 +1,6 @@
-<h1>タスク一覧</h1>
-
 <%= link_to '新規作成', new_task_path %>
+
+<h3>進行中</h3>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @in_progress_tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
         <td style="background-color: <%= task.color_code %>;">
@@ -31,7 +31,38 @@
   </tbody>
 </table>
 
-<h1>今月のカレンダー</h1>
+<h3>完了したタスク</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>色</th>
+      <th>カテゴリ</th>
+      <th>期間</th>
+      <th>進捗</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @completed_tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td style="background-color: <%= task.color_code %>;">
+          <%= task.color %>
+        </td>
+        <td><%= task.category %></td>
+        <td><%= task.start_date&.to_date %> ～ <%= task.end_date&.to_date %></td>
+        <td><%= task.progress_percentage %><td>
+          <%= link_to '表示', task_path(task) %> |
+          <%= link_to '編集', edit_task_path(task) %> |
+          <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>今月のカレンダー</h3>
 
 <table class="calendar">
   <thead>
@@ -53,12 +84,20 @@
           <%= date.day %>
           <% @tasks.each do |task| %>
             <% if task.task_logs.exists?(executed_on: date) %>
-              <span class="circle-indicator" style="background-color: <%= task.color_code %>;">⚪︎</span> <!-- チェックされた日に丸印を表示 -->
+              <span class="circle-indicator" style="background-color: <%= task.color_code %>;">
+                ⚪︎
+              </span>
             <% end %>
           <% end %>
         </td>
       <% end %>
     </tr>
   <% end %>
-</tbody>
+  </tbody>
 </table>
+
+<h3>グラフ</h3>
+<%= line_chart @progress_data.map { |date, progress| [date.strftime("%Y-%m-%d"), progress] }, 
+                height: "300px", 
+                ytitle: "進捗率 (%)",
+                max: 100 %>
