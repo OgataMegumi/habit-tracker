@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+    has_many :task_logs, dependent: :destroy
+
     FREQUENCY_RANGE = (1..12).to_a
     FREQUENCY_UNITS_LIST = ["時間", "日", "週", "ヶ月"]
     CATEGORIES_GROUPS = {
@@ -21,18 +23,16 @@ class Task < ApplicationRecord
     validates :category, inclusion: { in: CATEGORIES }
     validates :color, inclusion: { in: COLORS }
 
-    before_save :calculate_frequency_in_days
+    def total_days
+        (end_date - start_date).to_i + 1
+    end
 
-    def calculate_frequency_in_days
-        case frequency_unit
-        when "時間"
-            self.frequency_in_days = frequency_number / 24.0
-        when "日"
-            self.frequency_in_days = frequency_number
-        when "週"
-            self.frequency_in_days = frequency_number * 7
-        when "ヶ月"
-            self.frequency_in_days = frequency_number * 30
-        end
+    def executed_days
+        task_logs.where(executed_on: start_date..end_date).distinct.count(:executed_on)
+    end
+
+    def progress_percentage
+        return 0 if total_days.zero?
+        (executed_days.to_f / total_days * 100).round(1)
     end
 end

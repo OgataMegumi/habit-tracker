@@ -1,2 +1,18 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h2><%= @task.title %></h2>
+<p>進捗: <%= @task.progress_percentage %>％</p>
+
+<ul>
+  <% (@task.start_date..@task.end_date).each do |date| %>
+    <li>
+      <%= check_box_tag "executed_on_#{date}",
+                        date,
+                        @task.task_logs.exists?(executed_on: date),
+                        data: {
+                          task_id: @task.id,
+                          date: date
+                        },
+                        class: "task-log-checkbox" %>
+      <%= date.strftime("%Y-%m-%d") %>
+    </li>
+  <% end %>
+</ul>

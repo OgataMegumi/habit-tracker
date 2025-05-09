@@ -10,15 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_074749) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_092502) do
+  create_table "task_logs", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.date "executed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_logs_on_task_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "category"
     t.string "frequency"
     t.text "message"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,4 +46,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_074749) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "task_logs", "tasks"
 end
