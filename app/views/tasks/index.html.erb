@@ -77,7 +77,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @dates_in_month.each_slice(7) do |week| %>
+  <% @current_month_dates.each_slice(7) do |week| %>
     <tr>
       <% week.each do |date| %>
         <td class="<%= 'checked' if @tasks.any? { |task| task.task_logs.exists?(executed_on: date) } %>">

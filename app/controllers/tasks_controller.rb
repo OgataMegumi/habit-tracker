@@ -3,15 +3,10 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-
-    @in_progress_tasks = Task.all.reject { |task| task.completion_rate == 100 }
-
-    @completed_tasks = Task.all.select { |task| task.completion_rate == 100 }
-
-    @done_tasks = Task.includes(:task_logs)
-
-    @dates_in_month = Task.dates_in_current_month
-    @progress_data = TaskProgressCalculator.new(@done_tasks).call
+    @in_progress_tasks = Task.in_progress
+    @completed_tasks = Task.completed
+    @current_month_dates = Task.dates_in_current_month
+    @progress_data = TaskLog.calculate_daily_progress
   end
 
   def show

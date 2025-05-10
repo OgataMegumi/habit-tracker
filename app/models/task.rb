@@ -3,6 +3,9 @@ class Task < ApplicationRecord
 
   has_many :task_logs, dependent: :destroy
 
+  scope :in_progress, -> { all.reject { |t| t.completion_rate == 100 } }
+  scope :completed, -> { all.select { |t| t.completion_rate == 100 } }
+
   FREQUENCY_RANGE = (1..12).to_a
   CATEGORIES = CATEGORIES_GROUPS.values.flatten
   
@@ -15,13 +18,13 @@ class Task < ApplicationRecord
     COLOR_CODES[self.color]
   end
 
-  def scheduled_days
+  def scheduled_periods
     (end_date - start_date).to_i + 1
   end
 
   def completion_rate
-    return 0 if scheduled_days.zero?
-    (TaskLog.done_days(self).to_f / scheduled_days * 100).round(1)
+    return 0 if scheduled_periods.zero?
+    (TaskLog.done_days(self).to_f / scheduled_periods * 100).round(1)
   end
 
   def self.dates_in_current_month
@@ -29,4 +32,9 @@ class Task < ApplicationRecord
     end_date = Date.today.end_of_month
     (start_date..end_date).to_a
   end
+
+  # def self.calculate_progress_data
+  #   daily_performed_tasks = includes(:task_logs).completed
+  #   TaskProgressCalculator.new(daily_performed_tasks).call
+  # end
 end

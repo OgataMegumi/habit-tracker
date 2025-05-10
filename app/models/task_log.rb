@@ -16,4 +16,9 @@ class TaskLog < ApplicationRecord
       task.task_logs.create!(executed_on: data)
     end
   end
+
+  def self.calculate_daily_progress
+    task_logs = all.includes(:task)
+    TaskProgressCalculator.new(task_logs).call
+  end
 end
