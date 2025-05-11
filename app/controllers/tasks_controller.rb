@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    @random_message = Task.pluck(:message).sample
     @in_progress_tasks = Task.in_progress
     @completed_tasks = Task.completed
     @current_month_dates = Task.dates_in_current_month

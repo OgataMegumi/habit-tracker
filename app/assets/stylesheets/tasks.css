@@ -1,0 +1,155 @@
+html, body {
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.page-layout {
+  display: flex;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  gap: 40px;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.today-date {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.random-message {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* ----------TO DO---------- */
+
+.task-list-wrapper {
+  margin-top: 20px;
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ----------カレンダー---------- */
+
+.calendar-wrapper {
+  padding: 16px;
+}
+
+.calender-container {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.calendar {
+  width: 100%;
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+
+.calendar th, .calendar td {
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.calendar th {
+  text-align: center;
+}
+
+.calendar td {
+  border: 1px solid #ccc;
+  width: 14.28%;
+  min-width: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.calender td.checked {
+  background-color: #f0f0f0;
+}
+
+.calendar td .circle-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.calendar td .task-background {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 5px;
+  z-index: 0;
+  display: flex;
+  align-items: stretch;
+  padding-left: 25px;
+}
+
+.calendar td .task-background span {
+  display: inline-block;
+  height: 100%;
+  border-radius: 5px;
+  margin-right: 5px;
+  /* position: relative; */
+}
+
+.calendar td .task-background span:last-child {
+  margin-right: 0; /* 最後のspanには余白を付けない */
+}
+
+.calender td .date-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+}
+
+/* ----------グラフ---------- */
+
+.graph-container {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 20px;
+  min-height: 300px;
+}
