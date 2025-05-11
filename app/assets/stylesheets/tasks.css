@@ -3,24 +3,25 @@ html, body {
   background-color: #f0f0f0;
 }
 
-h3 {
+h4 {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .page-layout {
   display: flex;
-  height: 100%;
-  padding: 40px;
+  height: 100vh;
+  padding: 20px;
   box-sizing: border-box;
-  gap: 40px;
+  gap: 32px;
 }
 
 .left-column {
-  flex: 1;
+  flex: 0.8;
 }
 
 .header {
+  padding-left: 16px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -28,7 +29,7 @@ h3 {
 
 .today-date {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .random-message {
@@ -36,9 +37,16 @@ h3 {
   font-weight: bold;
 }
 
+.scrollable-area {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
 /* ----------TO DO---------- */
 
 .task-list-wrapper {
+  padding: 16px;
   margin-top: 20px;
 }
 
@@ -53,8 +61,105 @@ h3 {
   background: #fff;
   border-radius: 20px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 240px;
+  height: 210px;
 }
+
+.dropdown {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 1.5em;
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.task-card .progress-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.task-card .progress-circle .fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  clip: rect(0, 100%, 100%, 50%);
+}
+
+.task-card .icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  z-index: 3;
+}
+
+.task-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.task-card .actions {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.task-card .progress-circle::before {
+  content: "";
+  position: absolute;
+  width: 100px;  /* 内側の穴の直径 */
+  height: 100px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* ================================================= */
 
 .right-column {
   display: flex;
@@ -69,10 +174,10 @@ h3 {
 }
 
 .calender-container {
+  margin-top: 1rem;
   background-color: #fff;
   border-radius: 20px;
   padding: 16px;
-  margin-top: 10px;
 }
 
 .calendar {
@@ -84,7 +189,6 @@ h3 {
 .calendar th, .calendar td {
   font-weight: bold;
   font-size: 0.7rem;
-  padding: 10px;
   border-radius: 5px;
   position: relative;
 }
@@ -94,6 +198,7 @@ h3 {
 }
 
 .calendar td {
+  padding: 10px;
   border: 1px solid #ccc;
   width: 14.28%;
   min-width: 40px;
@@ -147,9 +252,12 @@ h3 {
 
 /* ----------グラフ---------- */
 
+.graph-wrapper {
+  padding: 16px;
+}
 .graph-container {
+  margin-top: 1rem;
   padding: 16px;
   background-color: #fff;
   border-radius: 20px;
-  min-height: 300px;
 }
