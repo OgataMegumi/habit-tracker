@@ -20,7 +20,7 @@ h4 {
   flex: 0.8;
 }
 
-.header {
+.date-header {
   padding-left: 16px;
   display: flex;
   align-items: center;
@@ -171,7 +171,7 @@ h4 {
 /* ----------カレンダー---------- */
 
 .calendar-wrapper {
-  padding: 16px;
+  margin-bottom: 16px
 }
 
 .calender-container {
@@ -253,9 +253,6 @@ h4 {
 
 /* ----------グラフ---------- */
 
-.graph-wrapper {
-  padding: 16px;
-}
 .graph-container {
   margin-top: 1rem;
   padding: 16px;

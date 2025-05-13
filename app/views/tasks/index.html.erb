@@ -1,17 +1,6 @@
-<div class="header">
-  <div class="header-left">
-    <h1>タスク管理アプリ</h1>
-  </div>
-  <div class="header-right">
-    <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
-      <%= submit_tag "ログアウト", class: "btn btn-danger" %>
-    <% end %>
-</div>
-</div>
-
 <div class="page-layout">
   <div class="left-column">
-    <div class="header">
+    <div class="date-header">
       <div class="today-date">
         <%= Date.current.strftime("%-m.%-d(%a)") %>
       </div>
