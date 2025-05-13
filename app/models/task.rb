@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   include TaskContents
 
   has_many :task_logs, dependent: :destroy
+  belongs_to :user
 
   scope :in_progress, -> { all.reject { |t| t.completion_rate == 100 } }
   scope :completed, -> { all.select { |t| t.completion_rate == 100 } }

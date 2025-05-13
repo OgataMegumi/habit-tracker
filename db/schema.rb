@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_092502) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_13_053938) do
   create_table "task_logs", force: :cascade do |t|
     t.integer "task_id", null: false
     t.date "executed_on"
@@ -33,6 +33,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_092502) do
     t.integer "frequency_number"
     t.string "frequency_unit"
     t.float "frequency_in_days"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +50,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_092502) do
   end
 
   add_foreign_key "task_logs", "tasks"
+  add_foreign_key "tasks", "users"
 end
