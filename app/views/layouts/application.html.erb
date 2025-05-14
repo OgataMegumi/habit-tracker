@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "App" %></title>
+    <title><%= content_for(:title) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    <%# --- Icons --- %>
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%# --- Stylesheets --- %>
     <%= stylesheet_link_tag :app %>
+
+    <%# --- JavaScript (Chartkick & Chart.js) --- %>
+    <%= javascript_include_tag "chartkick" %>
+    <%= javascript_include_tag "Chart.bundle" %>
+
+    <%# --- Optional: PWA manifest (Uncomment if used in config/routes.rb) --- %>
+    <%# tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <%= yield :head %>
   </head>
 
   <body>
+    <div class="header">
+      <div class="header-left">
+        <%= link_to "MyApp", root_path, class: "logo" %>
+      </div>
+      <div class="header-right">
+        <% if user_signed_in? %>
+          <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+            <%= submit_tag "ログアウト", class: "btn btn-danger" %>
+          <% end %>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+          <%= link_to "登録", new_user_registration_path, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>
