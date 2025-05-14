@@ -9,7 +9,7 @@ class Task < ApplicationRecord
 
   FREQUENCY_RANGE = (1..12).to_a
   CATEGORIES = CATEGORIES_GROUPS.values.flatten
-  
+
   validates :frequency_number, inclusion: { in: FREQUENCY_RANGE }
   validates :frequency_unit, inclusion: { in: FREQUENCY_UNITS_LIST }
   validates :category, inclusion: { in: CATEGORIES }
