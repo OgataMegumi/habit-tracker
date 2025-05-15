@@ -6,7 +6,7 @@ gem "rails", "~> 8.0.2"
 gem "propshaft"
 
 # gem "sqlite3", ">= 2.1"
-gem 'pg'
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
