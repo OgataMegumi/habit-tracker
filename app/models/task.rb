@@ -33,9 +33,4 @@ class Task < ApplicationRecord
     end_date = Date.today.end_of_month
     (start_date..end_date).to_a
   end
-
-  # def self.calculate_progress_data
-  #   daily_performed_tasks = includes(:task_logs).completed
-  #   TaskProgressCalculator.new(daily_performed_tasks).call
-  # end
 end
