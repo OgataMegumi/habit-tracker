@@ -72,6 +72,43 @@ h4 {
   height: 210px;
 }
 
+.task-card:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.new-task-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  background-color: #f0f0f0;
+  border: 5px dashed #afafaf;
+}
+
+.new-task-card:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.new-task-card .plus-icon {
+  font-size: 2rem;
+  color: #a3a3a3;
+}
+
+.new-task-card .new-task-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  color: #a3a3a3;
+}
+
 .dropdown {
   position: absolute;
   top: 8px;
@@ -86,6 +123,7 @@ h4 {
 }
 
 .dropdown-menu {
+  width: 100px;
   display: none;
   position: absolute;
   right: 0;
@@ -158,6 +196,13 @@ h4 {
   background: #fff;
   border-radius: 50%;
   z-index: 2;
+}
+
+.task-card.completed:hover {
+  background-color: inherit !important;
+  box-shadow: none !important;
+  transform: none !important;
+  cursor: default;
 }
 
 /* ================================================= */
