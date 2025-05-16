@@ -1,0 +1,70 @@
+body {
+  color: #333333;
+}
+
+body {
+  margin-top: 80px;
+  overflow-y: hidden; /* 縦スクロールを禁止 */
+}
+
+.login-title {
+  max-width: 500px;
+  margin: 0 auto 0.5rem;
+}
+
+.login-form {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.login-form .field {
+  margin-bottom: 1rem;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  margin-top: 10px;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.9px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.login-form .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-form .actions {
+  text-align: center;
+}
+
+.remember-me label {
+  font-size: 0.8rem;
+}
+
+.login-form .actions input[type="submit"] {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  /* border: 1px solid #ff9900; */
+  border: 1px solid #ccc;
+}
+
+.devise-links {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.devise-links a {
+  display: inline-block;
+  margin: 0.5rem 1rem;
+  text-decoration: none;
+}

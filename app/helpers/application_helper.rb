@@ -36,4 +36,16 @@ module ApplicationHelper
       "どれとも違う素敵なカテゴリ" => "other.png"
     }
   end
+
+  def hide_header_for_devise_page?
+    hidden_devise_pages = [
+      { controller: 'sessions', action: 'new' },
+      { controller: 'registrations', action: 'new' },
+      { controller: 'passwords', action: 'new' }
+    ]
+
+    hidden_devise_pages.any? do |page|
+      controller_name == page[:controller] && action_name == page[:action]
+    end
+  end
 end
