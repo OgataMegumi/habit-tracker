@@ -1,10 +1,11 @@
 body {
-  color: #333333;
+  color: #464646;
 }
 
 body {
   margin-top: 80px;
-  overflow-y: hidden; /* 縦スクロールを禁止 */
+  /* 縦スクロールを禁止 */
+  /* overflow-y: hidden;  */
 }
 
 .login-title {
@@ -12,10 +13,14 @@ body {
   margin: 0 auto 0.5rem;
 }
 
+.login-form label {
+  font-size: 0.8rem;
+}
+
 .login-form {
   max-width: 450px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem;
   background-color: #fff;
   border-radius: 20px;
 }
@@ -50,12 +55,11 @@ body {
 
 .login-form .actions input[type="submit"] {
   padding: 0.5rem 1rem;
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
+  background-color: #f6f6f6;
+  color: #464646;
+  border-radius: 5px;
   cursor: pointer;
-  /* border: 1px solid #ff9900; */
-  border: 1px solid #ccc;
+  border: 0.9px solid #ccc;
 }
 
 .devise-links {
@@ -72,5 +76,5 @@ body {
 .error-message {
   color: red;
   margin-bottom: 1rem;
-  font-size: 0.8rem; /* 文字サイズを少し小さく */
+  font-size: 0.8rem;
 }

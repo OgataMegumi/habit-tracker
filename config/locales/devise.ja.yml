@@ -61,3 +61,19 @@ ja:
       not_saved:
         one: "1 件のエラーのため %{resource} は保存されませんでした："
         other: "%{count} 件のエラーのため %{resource} は保存されませんでした："
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用のパスワード
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "%{count}文字以上で入力してください"
+            password_confirmation:
+              confirmation: "とパスワードの入力が一致しません"

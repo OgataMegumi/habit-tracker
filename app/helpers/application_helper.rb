@@ -39,9 +39,10 @@ module ApplicationHelper
 
   def hide_header_for_devise_page?
     hidden_devise_pages = [
-      { controller: 'sessions', action: 'new' },
-      { controller: 'registrations', action: 'new' },
-      { controller: 'passwords', action: 'new' }
+      { controller: "sessions", action: "new" },
+      { controller: "registrations", action: "new" },
+      { controller: "passwords", action: "new" },
+      { controller: "users", action: "index" }
     ]
 
     hidden_devise_pages.any? do |page|
