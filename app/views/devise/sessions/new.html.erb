@@ -19,6 +19,12 @@
       </div>
     <% end %>
 
+    <% if flash[:alert] %>
+      <div class="error-message">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
     <div class="actions">
       <%= f.submit "続ける" %>
     </div>

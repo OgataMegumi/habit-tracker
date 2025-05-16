@@ -68,3 +68,9 @@ body {
   margin: 0.5rem 1rem;
   text-decoration: none;
 }
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+  font-size: 0.8rem; /* 文字サイズを少し小さく */
+}
