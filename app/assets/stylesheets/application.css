@@ -1,31 +1,33 @@
-/* ヘッダー全体のスタイル */
+/*
+ *= require tasks
+ *= require devise/registrations
+ *= require devise/sessions
+ */
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  /* border-bottom: 1px solid #ddd; */ /* 下線 */
 }
 
-/* 左側のタイトルとアイコン */
 .header-left {
   display: flex;
   align-items: center;
 }
 
 .header-left .header-icon {
-  width: 20px; /* アイコンの幅 */
-  height: 20px; /* アイコンの高さ */
-  margin-right: 10px; /* タイトルとの間隔 */
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .header-left h1 {
   font-size: 24px;
   margin: 0;
-  color: #333; /* タイトルの色 */
+  color: #333;
 }
 
-/* 右側のボタン */
 .header-right .btn {
-  margin-left: 10px; /* ボタン間の間隔 */
+  margin-left: 10px;
 }

@@ -24,6 +24,8 @@
     <%# --- Optional: PWA manifest (Uncomment if used in config/routes.rb) --- %>
     <%# tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
+    <%= javascript_importmap_tags %>
+
     <%= yield :head %>
   </head>
 

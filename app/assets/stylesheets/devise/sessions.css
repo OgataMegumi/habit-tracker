@@ -2,11 +2,10 @@ body {
   color: #464646;
 }
 
-body {
+/* body {
   margin-top: 80px;
-  /* 縦スクロールを禁止 */
-  /* overflow-y: hidden;  */
-}
+  overflow-y: hidden;
+} */
 
 .login-title {
   max-width: 500px;

@@ -14,11 +14,10 @@
           <h4>TO DO</h4>
           <div class="task-list">
             <% @in_progress_tasks.each do |task| %>
-              <div class="task-card">
+              <div class="task-card" data-url="<%= task_path(task) %>">
                 <div class="dropdown">
-                  <button class="dropdown-toggle">⋯</button>
-                  <div class="dropdown-menu">
-                    <%= link_to '今日の記録をつける', task_path(task), class: 'dropdown-item' %>
+                  <button class="dropdown-toggle" onclick="event.stopPropagation()">⋯</button>
+                  <div class="dropdown-menu" hidden>
                     <%= link_to '編集', edit_task_path(task), class: 'dropdown-item' %>
                     <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
                   </div>
@@ -35,7 +34,7 @@
             <% end %>
             <%= link_to new_task_path, class: "task-card new-task-card" do %>
               <div class="plus-icon">＋</div>
-              <div class="new-task-label">New TO DO</div>
+              <div class="new-task-label">TO DO</div>
             <% end %>
           </div>
         </div>
@@ -44,12 +43,6 @@
           <div class="task-list">
             <% @completed_tasks.each do |task| %>
               <div class="task-card completed">
-                <div class="dropdown">
-                  <button class="dropdown-toggle">⋯</button>
-                  <div class="dropdown-menu">
-                    <%= link_to '非表示', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
-                  </div>
-                </div>
                 <div class="progress-circle">
                   <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
                   <% image_file = task_category_image_map[task.category] || "default.png" %>
@@ -61,7 +54,7 @@
               </div>
             <% end %>
           </div>
-        <div>
+        </div>
       </div>
     </div>
   </div>
