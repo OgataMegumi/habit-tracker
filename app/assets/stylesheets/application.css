@@ -4,30 +4,10 @@
  *= require devise/sessions
  */
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.header-left {
+ .header {
   display: flex;
   align-items: center;
-}
-
-.header-left .header-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-.header-left h1 {
-  font-size: 24px;
-  margin: 0;
-  color: #333;
-}
-
-.header-right .btn {
-  margin-left: 10px;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 15px;
 }

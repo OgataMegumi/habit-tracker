@@ -11,7 +11,7 @@ h4 {
 .page-layout {
   display: flex;
   height: 100vh;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   box-sizing: border-box;
   gap: 32px;
 }
@@ -48,7 +48,6 @@ h4 {
 
 .task-list-wrapper {
   padding: 16px;
-  margin-top: 20px;
 }
 
 .task-list {
@@ -232,6 +231,7 @@ h4 {
   background-color: #fff;
   border-radius: 20px;
   padding: 16px;
+  /* width: 570px; */
 }
 
 .calendar {
@@ -352,3 +352,31 @@ h4 {
   background-color: #0056b3;
 }
 
+.search-form {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.task-search-input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.task-search-button {
+  padding: 3px;
+  background-color: #ffce48;
+  border: none;
+  margin-right: 12px;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+/* .all-tasks-button {
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid #ccc
+} */
