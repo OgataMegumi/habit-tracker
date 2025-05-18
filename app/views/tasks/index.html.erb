@@ -8,6 +8,13 @@
         <%= @random_message %>
       </div>
     </div>
+    <div class="search-form">
+      <%= form_with url: tasks_path, method: :get, local: true do |form| %>
+        <%= form.text_field :q, placeholder: "タスクのタイトル", value: params[:q], class: "task-search-input" %>
+        <%= form.submit "🔍", class: "task-search-button" %>
+        <%= link_to "全てのタスク", tasks_path, class: "all-tasks-button" %>
+      <% end %>
+    </div>
     <div class="scrollable-area">
       <div class="task-list-wrapper">
         <div>
@@ -32,9 +39,11 @@
                 </div>
               </div>
             <% end %>
-            <%= link_to new_task_path, class: "task-card new-task-card" do %>
-              <div class="plus-icon">＋</div>
-              <div class="new-task-label">TO DO</div>
+            <% if @in_progress_tasks.any? && params[:q].blank? %>
+              <%= link_to new_task_path, class: "task-card new-task-card" do %>
+                <div class="plus-icon">＋</div>
+                <div class="new-task-label">TO DO</div>
+              <% end %>
             <% end %>
           </div>
         </div>

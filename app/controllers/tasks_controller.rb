@@ -3,10 +3,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @tasks = Task.all
-    @random_message = Task.pluck(:message).sample
-    @in_progress_tasks = Task.in_progress
-    @completed_tasks = Task.completed
+    keyword = params[:q].presence&.strip
+
+    @in_progress_tasks = Task.in_progress_for(current_user, keyword)
+    @completed_tasks   = Task.completed_for(current_user, keyword)
+
+    @tasks = current_user.tasks.includes(:task_logs)
+    @random_message = current_user.tasks.pluck(:message).sample
     @current_month_dates = Task.dates_in_current_month
     @progress_data = TaskLog.calculate_daily_progress
   end
