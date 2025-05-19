@@ -4,3 +4,4 @@ Rails.start()
 
 import "card_click"
 import "dropdown"
+import "color_select"

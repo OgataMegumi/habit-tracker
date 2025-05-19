@@ -6,7 +6,7 @@ module ApplicationHelper
       "筋トレ" => "training.png",
       "ストレッチ" => "stretch.png",
       "ヨガ" => "yoga.png",
-      "これ以外の運動" => "other_exercise.png",
+      "運動" => "other_exercise.png",
       "貯金" => "saving.png",
       "投資" => "investment.png",
       "プログラミング" => "programming.png",
@@ -33,7 +33,7 @@ module ApplicationHelper
       "部屋の片付け" => "cleaning.png",
       "断捨離" => "decluttering.png",
       "デジタルデトックス" => "digital_detox.png",
-      "どれとも違う素敵なカテゴリ" => "other.png"
+      "これ以外" => "other.png"
     }
   end
 

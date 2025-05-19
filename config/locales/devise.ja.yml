@@ -77,8 +77,3 @@ ja:
               too_short: "%{count}文字以上で入力してください"
             password_confirmation:
               confirmation: "とパスワードの入力が一致しません"
-  date:
-    order:
-      - :year
-      - :month
-      - :day
