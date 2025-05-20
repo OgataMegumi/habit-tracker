@@ -18,3 +18,13 @@ ja:
       - :year
       - :month
       - :day
+  activerecord:
+    attributes:
+      task:
+        title: タイトル
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              too_long: "は%{count}文字以内で入力してください"

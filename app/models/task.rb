@@ -11,6 +11,7 @@ class Task < ApplicationRecord
   validates :frequency_unit, inclusion: { in: FREQUENCY_UNITS_LIST }
   validates :category, inclusion: { in: CATEGORIES }
   validates :color, inclusion: { in: COLORS }
+  validates :title, length: { maximum: 15 }
 
   def color_code
     COLOR_CODES[self.color]

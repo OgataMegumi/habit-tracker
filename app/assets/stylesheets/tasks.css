@@ -180,7 +180,7 @@ h4 {
 }
 
 .task-title {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
 }
@@ -210,6 +210,11 @@ h4 {
 
 .completed_tasks_list {
   margin-top: 20px;
+}
+
+.task-title.completed-today {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 /* ================================================= */
@@ -380,3 +385,63 @@ h4 {
   text-decoration: none;
   border: 1px solid #ccc
 } */
+
+
+/* =================モーダル==================*/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.task-log-modal {
+  width: 150px;
+  height: 150px;
+}
+
+#modalTaskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+.task-log-modal::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 65px;
+  border-width: 0 8px 7px 8px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.1));
+}
+
+.task-log-modal-content {
+  background-color: #fff;
+  font-size: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 60px;
+  border-radius: 8px;
+}
+
+.close-button {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}

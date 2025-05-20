@@ -1,2 +1,6 @@
-# const checkbox = document.querySelector(`#executed_on_<%= params[:executed_on] %>`);
-# checkbox.checked = !checkbox.checked;
+<% if @task.errors.any? %>
+  document.getElementById('modal-errors').innerHTML = "<%= j render partial: 'shared/error_messages', locals: { object: @task } %>";
+<% else %>
+  document.getElementById('newTaskModal').style.display = 'none';
+  window.location.href = "<%= tasks_path %>";
+<% end %>

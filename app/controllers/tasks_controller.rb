@@ -26,10 +26,14 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
-    if @task.save
-      redirect_to tasks_path
+
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to tasks_path }
+        format.js
     else
-      render :new, status: :unprocessable_entity
+        format.js
+      end
     end
   end
 

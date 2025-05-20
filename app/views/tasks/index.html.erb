@@ -21,7 +21,7 @@
           <h4>TO DO</h4>
           <div class="task-list">
             <% @in_progress_tasks.each do |task| %>
-              <div class="task-card" data-url="<%= task_path(task) %>">
+              <div class="task-card" data-task-id="<%= task.id %>">
                 <div class="dropdown">
                   <button class="dropdown-toggle" onclick="event.stopPropagation()">⋯</button>
                   <div class="dropdown-menu" hidden>
@@ -34,16 +34,16 @@
                   <% image_file = task_category_image_map[task.category] || "default.png" %>
                   <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
                 </div>
-                <div class="task-title">
+                <div class="task-title" <%= "cmopleted-today" if task.task_logs.exists?(executed_on: @today) %>">
                   <%= task.title %>
                 </div>
               </div>
             <% end %>
             <% if @in_progress_tasks.any? && params[:q].blank? %>
-              <%= link_to new_task_path, class: "task-card new-task-card" do %>
+              <div class="task-card new-task-card" id="openNewTaskModal">
                 <div class="plus-icon">＋</div>
                 <div class="new-task-label">TO DO</div>
-              <% end %>
+              </div>
             <% end %>
           </div>
         </div>
@@ -88,11 +88,17 @@
           <% @current_month_dates.each_slice(7) do |week| %>
             <tr>
               <% week.each do |date| %>
-                <td class="<%= 'checked' if @tasks.any? { |task| task.task_logs.exists?(executed_on: date) } %>">
+                <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
+                <% titles = tasks_on_date.map { |t| t.title.presence || "(no title)" }.join(', ') %>
+                <td
+                  class="calender-cell <%= 'checked' if tasks_on_date.any? %>"
+                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence || '(no title)' }.join(',') %>"
+                >
                   <div class="task-background">
-                    <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
                     <% tasks_on_date.each_with_index do |task, index| %>
-                      <span class="task-span" style="background-color: <%= task.color_code %>; width: <%= 100 / tasks_on_date.size %>%;"></span>
+                      <span class="task-span"
+                        style="background-color: <%= task.color_code %>; width: <%= 100 / tasks_on_date.size %>%;"
+                      ></span>
                     <% end %>
                   </div>
                   <div class="date-number">
@@ -117,6 +123,22 @@
             )
         %>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="taskModal" class="task-log-modal" style="display: none;">
+  <div class="task-log-modal-content">
+    <ul id="modalTaskList"></ul>
+  </div>
+</div>
+
+<div id="newTaskModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close-button" id="newTaskModalClose">&times;</span>
+    <h3>タスクを追加</h3>
+    <div id="newTaskModalBody">
+      <%= render 'form', task: Task.new %>
     </div>
   </div>
 </div>
