@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const colorInput = document.getElementById('color_input');
+  const colorInput = document.getElementById('task_color');
   const swatches = document.querySelectorAll('.color-swatch');
 
   function selectColor(selectedName) {
@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     swatches.forEach(swatch => {
       const name = swatch.dataset.colorName;
-      const code = swatch.dataset.colorCode;
-      swatch.style.borderColor = name === selectedName ? 'white' : code;
+
+      if (name === selectedName) {
+        swatch.classList.add("selected");
+      } else {
+        swatch.classList.remove("selected");
+      }
     });
   }
 
-  // 初期値のハイライト
   if (colorInput.value) {
     selectColor(colorInput.value);
   }

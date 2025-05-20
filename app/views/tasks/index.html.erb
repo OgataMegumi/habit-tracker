@@ -9,10 +9,12 @@
       </div>
     </div>
     <div class="search-form">
-      <%= form_with url: tasks_path, method: :get, local: true do |form| %>
+      <%= form_with url: tasks_path, method: :get, local: true, html: { class: "search-form-inner" } do |form| %>
         <%= form.text_field :q, placeholder: "タスクのタイトル", value: params[:q], class: "task-search-input" %>
-        <%= form.submit "🔍", class: "task-search-button" %>
-        <%= link_to "全てのタスク", tasks_path, class: "all-tasks-button" %>
+        <%= button_tag type: "submit", class: "task-search-button" do %>
+          <%= image_tag("search.png", alt: "検索", class: "search-icon") %>
+        <% end %>
+        <%= link_to "全てのタスクを表示", tasks_path, class: "all-tasks-button" %>
       <% end %>
     </div>
     <div class="scrollable-area">
@@ -34,12 +36,12 @@
                   <% image_file = task_category_image_map[task.category] || "default.png" %>
                   <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
                 </div>
-                <div class="task-title" <%= "cmopleted-today" if task.task_logs.exists?(executed_on: @today) %>">
+                <div class="task-title <%= "executed" if task.task_logs.exists?(executed_on: Date.current) %>">
                   <%= task.title %>
                 </div>
               </div>
             <% end %>
-            <% if @in_progress_tasks.any? && params[:q].blank? %>
+            <% if params[:q].blank? %>
               <div class="task-card new-task-card" id="openNewTaskModal">
                 <div class="plus-icon">＋</div>
                 <div class="new-task-label">TO DO</div>
@@ -116,12 +118,7 @@
     <div class="graph-wrapper">
       <h4>GRAPH</h4>
       <div class="graph-container">
-        <%= column_chart(
-              @progress_data.map { |date, progress| [date.strftime("%m/%d"), progress] },
-              height: "200px",
-              stacked: true
-            )
-        %>
+        <%= column_chart(@chart_data, height: "200px", stacked: true) %>
       </div>
     </div>
   </div>
@@ -135,8 +132,7 @@
 
 <div id="newTaskModal" class="modal" style="display: none;">
   <div class="modal-content">
-    <span class="close-button" id="newTaskModalClose">&times;</span>
-    <h3>タスクを追加</h3>
+    <h1> Add New Task...</h1>
     <div id="newTaskModalBody">
       <%= render 'form', task: Task.new %>
     </div>

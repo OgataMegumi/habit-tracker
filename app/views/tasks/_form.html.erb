@@ -1,4 +1,4 @@
-<%= form_with model: task , local: false do |f| %>
+<%= form_with model: task , local: false, html: { class: "task-form" } do |f| %>
   <div class="form-two-column">
       
   <!-- 左カラム -->
@@ -34,27 +34,62 @@
 
       <div class="form-group">
         <%= f.label :start_date, "開始日", for: nil %><br>
-        <%= f.date_select :start_date, {}, class: "form-select" %>
+        
+        <select name="task[start_date(1i)]" class="form-select">
+            <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= task.start_date&.year == year ? "selected" : "" %>><%= year %></option>
+            <% end %>
+        </select>年
+        
+        <select name="task[start_date(2i)]" class="form-select">
+            <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= task.start_date&.month == month ? "selected" : "" %>><%= month %></option>
+            <% end %>
+        </select>月
+        
+        <select name="task[start_date(3i)]" class="form-select">
+            <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= task.start_date&.day == day ? "selected" : "" %>><%= day %></option>
+            <% end %>
+        </select>日
       </div>
 
       <div class="form-group">
         <%= f.label :end_date, "完了日", for: nil %><br>
-        <%= f.date_select :end_date, {}, class: "form-select" %>
+
+        <select name="task[end_date(1i)]" class="form-select">
+            <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= task.end_date&.year == year ? "selected" : "" %>><%= year %></option>
+            <% end %>
+        </select>年
+
+        <select name="task[end_date(2i)]" class="form-select">
+            <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= task.end_date&.month == month ? "selected" : "" %>><%= month %></option>
+            <% end %>
+        </select>月
+
+        <select name="task[end_date(3i)]" class="form-select">
+            <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= task.end_date&.day == day ? "selected" : "" %>><%= day %></option>
+            <% end %>
+        </select>日
       </div>
+
   
       <div class="form-group">
-        <%= f.label :color, "テーマカラー" %><br>
-        <%= f.hidden_field :color, id: "color_input" %>
+        <%= f.label :color, "テーマカラー", for: nil %><br>
+        <%= f.hidden_field :color, id: "task_color" %>
             <div id="color_palette">
             <% Task::COLOR_CODES.each do |name, code| %>
                 <div
                 class="color-swatch"
                 data-color-name="<%= name %>"
                 data-color-code="<%= code %>"
-                style="border-color: <%= code %>;"
+                style="border-color: <%= code %>; background-color: <%= code %>66;"
                 title="<%= name %>"
                 >
-                <span class="color-name"><%= name %></span>
+                <span class="checkmark">✔︎</span>
                 </div>
             <% end %>
             </div>

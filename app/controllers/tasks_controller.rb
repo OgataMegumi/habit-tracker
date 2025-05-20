@@ -11,7 +11,29 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.includes(:task_logs)
     @random_message = current_user.tasks.pluck(:message).sample
     @current_month_dates = Task.dates_in_current_month
-    @progress_data = TaskLog.calculate_daily_progress
+    @progress_data = TaskLog.calculate_daily_progress(current_user)
+
+    start_date = 13.days.ago.to_date
+    end_date = Date.today
+    date_range = (start_date..end_date).to_a
+
+    @chart_data = date_range.map do |date|
+      progress = @progress_data[date] || 0
+      [date.strftime("%m/%d"), progress]
+    end
+  end
+
+  def toggle_today
+    task = Task.find(params[:id])
+    TaskLog.toggle_for(task, Date.current)
+
+    executed = task.task_logs.exists?(executed_on: Date.current)
+    render json: {
+      success: true,
+      executed: executed,
+      completion_rate: task.completion_rate,
+      color_code: task.color_code
+    }
   end
 
   def show
@@ -31,7 +53,7 @@ class TasksController < ApplicationController
       if @task.save
         format.html { redirect_to tasks_path }
         format.js
-    else
+      else
         format.js
       end
     end

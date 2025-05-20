@@ -8,17 +8,19 @@ class TaskLog < ApplicationRecord
       .count(:executed_on)
   end
 
-  def self.mark_as_done!(task, data)
-    log = task.task_logs.find_by(executed_on: data)
+  def self.toggle_for(task, date)
+    log = task.task_logs.find_by(executed_on: date)
     if log
       log.destroy
     else
-      task.task_logs.create!(executed_on: data)
+      create!(task: task, executed_on: date)
     end
   end
 
-  def self.calculate_daily_progress
-    task_logs = all.includes(:task)
-    TaskProgressCalculator.new(task_logs).call
+  def self.calculate_daily_progress(user)
+    joins(:task)
+      .where(tasks: { user_id: user.id })
+      .group(:executed_on)
+      .count
   end
 end

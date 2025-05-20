@@ -212,9 +212,8 @@ h4 {
   margin-top: 20px;
 }
 
-.task-title.completed-today {
+.task-title.executed {
   text-decoration: line-through;
-  opacity: 0.6;
 }
 
 /* ================================================= */
@@ -321,11 +320,10 @@ h4 {
 /* ----------タスク登録・編集---------- */
 
 .task-form {
-  max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
   background: #f9f9f9;
-  border-radius: 12px;
+  border-radius: 25px;
 }
 
 .task-form .form-group {
@@ -361,6 +359,7 @@ h4 {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
+  align-items: center;  /* 垂直方向の中央揃え */
 }
 
 .task-search-input {
@@ -368,23 +367,44 @@ h4 {
   border-radius: 6px;
   border: 1px solid #ccc;
   width: 200px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.search-form-inner {
+  display: flex;
+  align-items: center;
 }
 
 .task-search-button {
-  padding: 3px;
-  background-color: #ffce48;
+  background: none;
   border: none;
-  margin-right: 12px;
-  border-radius: 10px;
-  width: 30px;
-  height: 30px;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-/* .all-tasks-button {
-  font-weight: bold;
+.search-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.all-tasks-button {
+  /* height: 36px;
+  line-height: 36px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background-color: #ffffff;
   text-decoration: none;
-  border: 1px solid #ccc
-} */
+  color: #2f812f;
+  font-weight: bold;
+  font-size: 12px; */
+  margin-left: 20px;
+}
 
 
 /* =================モーダル==================*/
@@ -395,7 +415,7 @@ h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.328);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -436,8 +456,9 @@ h4 {
 
 .modal-content {
   background-color: #fff;
-  padding: 60px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: 40px;
+  width: 1000px;
 }
 
 .close-button {
