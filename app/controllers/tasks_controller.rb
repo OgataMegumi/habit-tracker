@@ -43,7 +43,10 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def edit
+  def edit_modal
+    @task = Task.find(params[:id])
+    Rails.logger.debug "task color: #{@task.color.inspect}"
+    render partial: "form", locals: { task: @task }
   end
 
   def create

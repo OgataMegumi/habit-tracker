@@ -6,10 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     newTaskModal.style.display = 'flex';
   });
 
-  // newTaskClose.addEventListener('click', () => {
-  //   newTaskModal.style.display = 'none';
-  // });
-
   window.addEventListener('click', (event) => {
     if (event.target === newTaskModal) {
       newTaskModal.style.display = 'none';

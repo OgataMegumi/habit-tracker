@@ -27,7 +27,7 @@
                 <div class="dropdown">
                   <button class="dropdown-toggle" onclick="event.stopPropagation()">⋯</button>
                   <div class="dropdown-menu" hidden>
-                    <%= link_to '編集', edit_task_path(task), class: 'dropdown-item' %>
+                    <a href="#" class="dropdown-item edit-task-btn" data-task-id="<%= task.id %>">編集</a>
                     <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
                   </div>
                 </div>
@@ -91,10 +91,10 @@
             <tr>
               <% week.each do |date| %>
                 <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
-                <% titles = tasks_on_date.map { |t| t.title.presence || "(no title)" }.join(', ') %>
+                <% titles = tasks_on_date.map { |t| t.title.presence || "(タスク名なし)" }.join(', ') %>
                 <td
                   class="calender-cell <%= 'checked' if tasks_on_date.any? %>"
-                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence || '(no title)' }.join(',') %>"
+                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence || '(タスク名なし)' }.join(',') %>"
                 >
                   <div class="task-background">
                     <% tasks_on_date.each_with_index do |task, index| %>
@@ -135,6 +135,14 @@
     <h1> Add New Task...</h1>
     <div id="newTaskModalBody">
       <%= render 'form', task: Task.new %>
+    </div>
+  </div>
+</div>
+
+<div id="editTaskModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h1>Edit Task...</h1>
+    <div id="editTaskModalBody">
     </div>
   </div>
 </div>

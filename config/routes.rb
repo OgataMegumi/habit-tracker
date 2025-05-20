@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       post :toggle_today
+      get :edit_modal
     end
   end
 

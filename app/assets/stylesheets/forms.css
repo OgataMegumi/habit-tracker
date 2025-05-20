@@ -44,6 +44,10 @@
   display: block;
 }
 
+.color-swatch.selected .checkmark {
+  color: #fff;
+}
+
 .input-form {
   padding: 12px;
   width: 400px;

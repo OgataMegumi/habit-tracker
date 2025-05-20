@@ -3,15 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalList = document.getElementById('modalTaskList');
 
   document.querySelectorAll('td[data-task-titles]').forEach(cell => {
-    cell.addEventListener('click', () => {
-      const titles = cell.dataset.taskTitles.split(',');
+    cell.addEventListener('click', (event) => {
+      event.stopPropagation();
 
+      let titles = cell.dataset.taskTitles;
       modalList.innerHTML = '';
-      titles.forEach(title => {
+
+      if (!titles || titles.trim() === "") {
         const li = document.createElement('li');
-        li.textContent = title;
+        li.textContent = "なにもしていない日";
         modalList.appendChild(li);
-      });
+      } else {
+        titles.split(',').forEach(title => {
+          const li = document.createElement('li');
+          li.textContent = title.trim();
+          modalList.appendChild(li);
+        });
+      }
 
       const rect = cell.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -24,21 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // window.addEventListener('click', (event) => {
-  //   if (event.target === modal) {
-  //     modal.style.display = 'none';
-  //   }
-  // });
-
-  // window.addEventListener('click', (event) => {
-  //   // クリックされた要素がモーダルではなく、かつモーダルの子要素でもない場合に閉じる
-  //   if (!modal.contains(event.target)) {
-  //     modal.style.display = 'none';
-  //   }
-  // });
-
-  modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
+  window.addEventListener('click', (event) => {
+    if (!modal.contains(event.target)) {
       modal.style.display = 'none';
     }
   });

@@ -1,18 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const colorInput = document.getElementById('task_color');
-  const swatches = document.querySelectorAll('.color-swatch');
+export function initializeColorSelect(root = document) {
+  const colorInput = root.querySelector('input[name="task[color]"]');
+  const swatches = root.querySelectorAll('.color-swatch');
+
+  if (!colorInput || swatches.length === 0) return;
 
   function selectColor(selectedName) {
     colorInput.value = selectedName;
-
     swatches.forEach(swatch => {
-      const name = swatch.dataset.colorName;
-
-      if (name === selectedName) {
-        swatch.classList.add("selected");
-      } else {
-        swatch.classList.remove("selected");
-      }
+      swatch.classList.toggle("selected", swatch.dataset.colorName === selectedName);
     });
   }
 
@@ -25,4 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectColor(swatch.dataset.colorName);
     });
   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeColorSelect();
 });
