@@ -2,10 +2,10 @@ body {
   color: #464646;
 }
 
-/* body {
-  margin-top: 80px;
-  overflow-y: hidden;
-} */
+body {
+  /* margin-top: 80px; */
+  /* overflow-y: hidden; */
+}
 
 .login-title {
   max-width: 500px;

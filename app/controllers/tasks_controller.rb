@@ -45,7 +45,6 @@ class TasksController < ApplicationController
 
   def edit_modal
     @task = Task.find(params[:id])
-    Rails.logger.debug "task color: #{@task.color.inspect}"
     render partial: "form", locals: { task: @task }
   end
 
@@ -64,11 +63,20 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path
+      @in_progress_tasks = Task.in_progress_for(current_user)
+  
+      respond_to do |format|
+        format.js
+        format.html { redirect_to tasks_path }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.js
+        format.html { render :edit }
+      end
     end
   end
+  
 
   def destroy
     @task.destroy

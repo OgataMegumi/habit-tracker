@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.text())
         .then(html => {
           document.querySelector("#editTaskModalBody").innerHTML = html;
-          document.querySelector("#editTaskModal").style.display = "block";
+          document.querySelector("#editTaskModal").style.display = "flex";
 
           const modalBody = document.querySelector("#editTaskModalBody");
           initializeColorSelect(modalBody);

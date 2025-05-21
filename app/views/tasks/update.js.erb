@@ -1,0 +1,6 @@
+<% if @task.errors.any? %>
+  document.getElementById('modal-errors').innerHTML = "<%= j render partial: 'shared/error_messages', locals: { object: @task } %>";
+<% else %>
+  document.getElementById('newTaskModal').style.display = 'none';
+  document.querySelector('.task-list').innerHTML = "<%= j render partial: 'tasks/task_list', locals: { tasks: @in_progress_tasks } %>";
+<% end %>

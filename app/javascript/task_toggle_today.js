@@ -4,7 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".task-card").forEach(card => {
     if (card.classList.contains("new-task-card")) return;
 
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (event) => {
+      if (
+        event.target.closest(".edit-task-btn") ||
+        event.target.closest(".dropdown-item")
+      ) {
+        return;
+      }
+      
       const taskId = card.dataset.taskId;
       if (!taskId) return;
 
