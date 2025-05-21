@@ -14,7 +14,7 @@
         <%= button_tag type: "submit", class: "task-search-button" do %>
           <%= image_tag("search.png", alt: "検索", class: "search-icon") %>
         <% end %>
-        <%= link_to "全てのタスクを表示", tasks_path, class: "all-tasks-button" %>
+        <%= link_to "全てのタスクを表示", tasks_path, class: "btn all-tasks-btn" %>
       <% end %>
     </div>
     <div class="scrollable-area">
@@ -37,7 +37,10 @@
                   <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
                 </div>
                 <div class="task-title <%= "executed" if task.task_logs.exists?(executed_on: Date.current) %>">
-                  <%= task.title %>
+                <div class="task-title-wrapper">
+                  <span class="task-title"><%= task.title %></span>
+                  <img src="<%= image_path("executed.png") %>" alt="実行済み" class="executed-icon" style="display: none;">
+                </div>
                 </div>
               </div>
             <% end %>

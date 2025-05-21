@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(color: "orange")
   end
 
   def edit_modal

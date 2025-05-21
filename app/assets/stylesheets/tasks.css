@@ -67,13 +67,13 @@ h4 {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 200px;
-  height: 180px;
+  width: 230px;
+  height: auto;
 }
 
 .task-card:hover {
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
-  transform: translateY(-4px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -87,6 +87,13 @@ h4 {
   color: inherit;
   background-color: #f7f7f7;
   border: 3px dashed #afafaf;
+  min-height: 190px;
+  box-sizing: border-box;
+}
+
+.task-card.completed:hover {
+  background-color: white;
+  transform: translateY(-0px);
 }
 
 .new-task-card:hover {
@@ -182,6 +189,7 @@ h4 {
   font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
+  max-width: 180px;
 }
 
 .task-card .actions {
@@ -200,19 +208,8 @@ h4 {
   z-index: 2;
 }
 
-.task-card.completed:hover {
-  background-color: inherit !important;
-  box-shadow: none !important;
-  transform: none !important;
-  cursor: default;
-}
-
 .completed_tasks_list {
   margin-top: 20px;
-}
-
-.task-title.executed {
-  text-decoration: line-through;
 }
 
 /* ================================================= */
@@ -256,11 +253,12 @@ h4 {
 
 .calendar td {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #dedede;
   width: 14.28%;
   min-width: 40px;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .calender td.checked {
@@ -291,13 +289,12 @@ h4 {
 .calendar td .task-background span {
   display: inline-block;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 5px;
-  /* position: relative; */
 }
 
 .calendar td .task-background span:last-child {
-  margin-right: 0; /* 最後のspanには余白を付けない */
+  margin-right: 0;
 }
 
 .calender td .date-number {
@@ -338,7 +335,7 @@ h4 {
   width: 100%;
   padding: 0.5rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #dedede;
   font-size: 1rem;
 }
 
@@ -353,7 +350,7 @@ h4 {
   padding: 15px;
   border-radius: 30px;
   border: 2px solid #8e8e8e;
-  width: 200px;
+  width: 160px;
   height: 10px;
   font-size: 13px;
 }
@@ -376,12 +373,12 @@ h4 {
 }
 
 .search-icon {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
 }
 
-.all-tasks-button {
-  margin-left: 20px;
+.all-tasks-btn:hover {
+  background-color: #86f088;
 }
 
 
@@ -455,3 +452,53 @@ h4 {
   width: 1000px;
 }
 
+.task-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.executed-icon {
+  width: 30px;
+  height: 30px;
+  display: none;
+}
+
+.submit-button {
+  padding-left: 310px;
+}
+
+.form-textarea::placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}
+
+.input-form::placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}
+
+.char-count {
+  font-size: 10px;
+  color: #6b6b6b;
+  margin-top: 4px;
+  text-align: right;
+  font-weight: bold;
+}
+
+#modal-errors ul {
+  color: #ff272e;
+  margin-top: 10px;
+  font-size: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.required-mark {
+  color: #ff272e;
+  font-weight: bold;
+}
+
+.input-form.error {
+  border: 1px solid #ff272e;
+}

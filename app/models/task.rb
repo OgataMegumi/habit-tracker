@@ -12,6 +12,9 @@ class Task < ApplicationRecord
   validates :category, inclusion: { in: CATEGORIES }
   validates :color, inclusion: { in: COLORS }
   validates :title, length: { maximum: 15 }
+  validates :description, length: { maximum: 50 }
+  validates :message, length: { maximum: 50 }
+  validates :title, presence: true
 
   def color_code
     COLOR_CODES[self.color]

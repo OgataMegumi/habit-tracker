@@ -4,13 +4,15 @@
   <!-- 左カラム -->
     <div class="form-column">
       <div class="form-group">
-        <%= f.label :title, "目標" %><br>
-        <%= f.text_field :title, class: "input-form" %>
+        <%= f.label :title, "目標 <span class='required-mark'>*</span>".html_safe %><br>
+        <%= f.text_field :title, class: "input-form", placeholder: "毎日3kmランニングする！", maxlength: 15 %>
+        <div id="title_char_count" class="char-count">0/15</div>
       </div>
 
       <div class="form-group">
         <%= f.label :description,"メモ"  %><br>
-        <%= f.text_area :description, class: "form-textarea" %>
+        <%= f.text_area :description, class: "form-textarea", placeholder: "平日はAルート、休日はBルートを走る", maxlength: 50 %>
+        <div id="description_char_count" class="char-count">0/50</div>
       </div>
 
       <div class="form-group">
@@ -29,7 +31,8 @@
     <div class="form-column">
       <div class="form-group">
         <%= f.label :message, "自分への応援メッセージ" %><br>
-        <%= f.text_area :message, class: "form-textarea" %>
+        <%= f.text_area :message, class: "form-textarea", placeholder: "来月の25kmマラソンに向けてがんばれ！", maxlength: 50 %>
+        <div id="message_char_count" class="char-count">0/50</div>
       </div>
 
       <% selected_date = task.start_date || Date.today %>
@@ -80,27 +83,29 @@
         </select>日
       </div>
   
+      <% selected_color = (task.color.presence || "orange").to_s.strip %>
       <div class="form-group">
         <%= f.label :color, "テーマカラー", for: nil %><br>
-        <%= f.hidden_field :color, id: "task_color" %>
-            <div id="color_palette">
-            <% Task::COLOR_CODES.each do |name, code| %>
-                <div
-                class="color-swatch"
-                data-color-name="<%= name %>"
-                data-color-code="<%= code %>"
-                style="border-color: <%= code %>; background-color: <%= code %>66;"
-                title="<%= name %>"
-                >
-                <span class="checkmark">✔︎</span>
-                </div>
-            <% end %>
+        <%= f.hidden_field :color, id: "task_color", value: selected_color %>
+        <div id="color_palette">
+          <% Task::COLOR_CODES.each do |name, code| %>
+            <% name_str = name.to_s.strip %>
+            <div
+              class="color-swatch <%= 'selected' if name_str == selected_color %>"
+              data-color-name="<%= name_str %>"
+              data-color-code="<%= code %>"
+              style="border-color: <%= code %>; background-color: <%= code %>66;"
+              title="<%= name_str %>"
+            >
+              <span class="checkmark">✔︎</span>
             </div>
+          <% end %>
+        </div>
       </div>
 
       <div id="modal-errors"></div>
 
-      <div class="submit-button"><%= f.submit %></div>
+      <div class="submit-button"><%= f.submit "保存" %></div>
     </div>
   
   </div>

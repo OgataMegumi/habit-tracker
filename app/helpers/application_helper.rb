@@ -6,7 +6,6 @@ module ApplicationHelper
       "筋トレ" => "training.png",
       "ストレッチ" => "stretch.png",
       "ヨガ" => "yoga.png",
-      "運動" => "other_exercise.png",
       "貯金" => "saving.png",
       "投資" => "investment.png",
       "プログラミング" => "programming.png",
