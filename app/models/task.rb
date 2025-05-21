@@ -50,4 +50,8 @@ class Task < ApplicationRecord
     tasks = tasks.select(&:completed?)
     keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
   end
+
+  def executed_today?
+    task_logs.exists?(executed_on: Date.current)
+  end
 end

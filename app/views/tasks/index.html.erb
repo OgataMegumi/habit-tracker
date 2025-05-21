@@ -20,7 +20,13 @@
     <div class="scrollable-area">
       <div class="task-list-wrapper">
         <div>
-          <h4>TO DO</h4>
+          <h4>
+            TO DO
+            <span class="tooltip-icon">
+              <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+              <span class="tooltip-text">目標に取り組んだら、パネルをクリックしましょう！<br>取り組んだたことを記録できます</span>
+            </span>
+          </h4>
           <div class="task-list">
             <% @in_progress_tasks.each do |task| %>
               <div class="task-card" data-task-id="<%= task.id %>">
@@ -32,14 +38,14 @@
                   </div>
                 </div>
                 <div class="progress-circle">
-                  <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
+                  <div class="fill" style="<%= progress_circle_style(task) %>"></div>
                   <% image_file = task_category_image_map[task.category] || "default.png" %>
                   <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
                 </div>
-                <div class="task-title <%= "executed" if task.task_logs.exists?(executed_on: Date.current) %>">
+                <div class="task-title <%= "executed" if task.executed_today? %>">
                 <div class="task-title-wrapper">
                   <span class="task-title"><%= task.title %></span>
-                  <img src="<%= image_path("executed.png") %>" alt="実行済み" class="executed-icon" style="display: none;">
+                  <img src="<%= image_path("executed.png") %>" alt="実行済み" class="executed-icon" style="display: <%= task.executed_today? ? 'inline-block' : 'none' %>;">
                 </div>
                 </div>
               </div>
@@ -53,7 +59,16 @@
           </div>
         </div>
         <div class="completed_tasks_list">
-          <h4>達成したタスク</h4>
+        <h4>
+          達成したタスク
+          <span class="tooltip-icon">
+            <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+            <span class="tooltip-text">
+              ここに表示されているのは目標を達成したタスクです<br>
+              <%= @completed_tasks.any? ? "がんばったね！" : "これからがんばろう！" %>
+            </span>
+          </span>
+        </h4>
           <div class="task-list">
             <% @completed_tasks.each do |task| %>
               <div class="task-card completed">
@@ -75,7 +90,13 @@
 
   <div class="right-column">
     <div class="calendar-wrapper">
-      <h4>CALENDAR</h4>
+      <h4>
+        CALENDAR
+        <span class="tooltip-icon">
+          <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+          <span class="tooltip-text">カレンダーの日付をクリックすると、その日の記録を<br>見られます</span>
+        </span>
+      </h4>
       <div class="calender-container">
         <table class="calendar">
           <thead>
@@ -93,11 +114,11 @@
           <% @current_month_dates.each_slice(7) do |week| %>
             <tr>
               <% week.each do |date| %>
-                <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
-                <% titles = tasks_on_date.map { |t| t.title.presence || "(タスク名なし)" }.join(', ') %>
+                <% tasks_on_date = @tasks_on_date[date] || [] %>
+                <% titles = tasks_on_date.map { |t| t.title.presence }.join(', ') %>
                 <td
                   class="calender-cell <%= 'checked' if tasks_on_date.any? %>"
-                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence || '(タスク名なし)' }.join(',') %>"
+                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence }.join(',') %>"
                 >
                   <div class="task-background">
                     <% tasks_on_date.each_with_index do |task, index| %>
@@ -119,7 +140,13 @@
     </div>
 
     <div class="graph-wrapper">
-      <h4>GRAPH</h4>
+      <h4>
+        GRAPH
+        <span class="tooltip-icon">
+          <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+          <span class="tooltip-text">すべての目標のうち、いくつの目標に取り組んだかを<br>日ごとに確認できます</span>
+        </span>
+      </h4>
       <div class="graph-container">
         <%= column_chart(@chart_data, height: "200px", stacked: true) %>
       </div>

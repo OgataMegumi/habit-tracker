@@ -46,6 +46,49 @@ h4 {
 
 /* ----------TO DO---------- */
 
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-icon .info-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 230px;
+  background-color: #fff;
+  text-align: left;
+  border-radius: 8px;
+  padding: 9px;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 130%;
+  transform: translate(0, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 9px;
+  pointer-events: none;
+}
+
+.tooltip-icon:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 .task-list-wrapper {
   padding: 16px;
 }
@@ -88,6 +131,7 @@ h4 {
   background-color: #f7f7f7;
   border: 3px dashed #afafaf;
   min-height: 190px;
+  min-width: 250px;
   box-sizing: border-box;
 }
 
@@ -378,7 +422,7 @@ h4 {
 }
 
 .all-tasks-btn:hover {
-  background-color: #86f088;
+  background-color: #c8fdb8;
 }
 
 
