@@ -17,8 +17,8 @@ module TaskContents
     COLORS = [ "赤", "青", "緑", "黄", "黄緑" ]
 
     COLOR_CODES = {
-    "赤" => "#FD5A5D",
-    "青" => "#5FA9CB",
+    "赤" => "#ff272e",
+    "青" => "#5fa9cb",
     "緑" => "#1F785B",
     "黄" => "#FAB700",
     "黄緑" => "#B1DF43"

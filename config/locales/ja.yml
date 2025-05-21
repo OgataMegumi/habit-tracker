@@ -1,0 +1,30 @@
+ja:  
+  date:
+    month_names:
+      - ~
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - "11"
+      - "12"
+    order:
+      - :year
+      - :month
+      - :day
+  activerecord:
+    attributes:
+      task:
+        title: タイトル
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              too_long: "は%{count}文字以内で入力してください"

@@ -6,7 +6,7 @@ module ApplicationHelper
       "筋トレ" => "training.png",
       "ストレッチ" => "stretch.png",
       "ヨガ" => "yoga.png",
-      "これ以外の運動" => "other_exercise.png",
+      "運動" => "other_exercise.png",
       "貯金" => "saving.png",
       "投資" => "investment.png",
       "プログラミング" => "programming.png",
@@ -33,7 +33,20 @@ module ApplicationHelper
       "部屋の片付け" => "cleaning.png",
       "断捨離" => "decluttering.png",
       "デジタルデトックス" => "digital_detox.png",
-      "どれとも違う素敵なカテゴリ" => "other.png"
+      "これ以外" => "other.png"
     }
+  end
+
+  def hide_header_for_devise_page?
+    hidden_devise_pages = [
+      { controller: "sessions", action: "new" },
+      { controller: "registrations", action: "new" },
+      { controller: "passwords", action: "new" },
+      { controller: "users", action: "index" }
+    ]
+
+    hidden_devise_pages.any? do |page|
+      controller_name == page[:controller] && action_name == page[:action]
+    end
   end
 end

@@ -8,56 +8,63 @@
         <%= @random_message %>
       </div>
     </div>
+    <div class="search-form">
+      <%= form_with url: tasks_path, method: :get, local: true, html: { class: "search-form-inner" } do |form| %>
+        <%= form.text_field :q, placeholder: "タスクのタイトル", value: params[:q], class: "task-search-input" %>
+        <%= button_tag type: "submit", class: "task-search-button" do %>
+          <%= image_tag("search.png", alt: "検索", class: "search-icon") %>
+        <% end %>
+        <%= link_to "全てのタスクを表示", tasks_path, class: "all-tasks-button" %>
+      <% end %>
+    </div>
     <div class="scrollable-area">
       <div class="task-list-wrapper">
-        <h4>TO DO</h4>
-        <div class="task-list">
-          <% @in_progress_tasks.each do |task| %>
-            <div class="task-card">
-              <div class="dropdown">
-                <button class="dropdown-toggle">⋯</button>
-                <div class="dropdown-menu">
-                  <%= link_to '今日の記録をつける', task_path(task), class: 'dropdown-item' %>
-                  <%= link_to '編集', edit_task_path(task), class: 'dropdown-item' %>
-                  <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
+        <div>
+          <h4>TO DO</h4>
+          <div class="task-list">
+            <% @in_progress_tasks.each do |task| %>
+              <div class="task-card" data-task-id="<%= task.id %>">
+                <div class="dropdown">
+                  <button class="dropdown-toggle" onclick="event.stopPropagation()">⋯</button>
+                  <div class="dropdown-menu" hidden>
+                    <a href="#" class="dropdown-item edit-task-btn" data-task-id="<%= task.id %>">編集</a>
+                    <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
+                  </div>
+                </div>
+                <div class="progress-circle">
+                  <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
+                  <% image_file = task_category_image_map[task.category] || "default.png" %>
+                  <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
+                </div>
+                <div class="task-title <%= "executed" if task.task_logs.exists?(executed_on: Date.current) %>">
+                  <%= task.title %>
                 </div>
               </div>
-              <div class="progress-circle">
-                <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
-                <% image_file = task_category_image_map[task.category] || "default.png" %>
-                <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
+            <% end %>
+            <% if params[:q].blank? %>
+              <div class="task-card new-task-card" id="openNewTaskModal">
+                <div class="plus-icon">＋</div>
+                <div class="new-task-label">TO DO</div>
               </div>
-              <div class="task-title">
-                <%= task.title %>
-              </div>
-            </div>
-          <% end %>
-          <%= link_to new_task_path, class: "task-card new-task-card" do %>
-            <div class="plus-icon">＋</div>
-            <div class="new-task-label">New TO DO</div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      
-        <h4>達成したタスク</h4>
-        <div class="task-list">
-          <% @completed_tasks.each do |task| %>
-            <div class="task-card completed">
-              <div class="dropdown">
-                <button class="dropdown-toggle">⋯</button>
-                <div class="dropdown-menu">
-                  <%= link_to '非表示', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
+        <div class="completed_tasks_list">
+          <h4>達成したタスク</h4>
+          <div class="task-list">
+            <% @completed_tasks.each do |task| %>
+              <div class="task-card completed">
+                <div class="progress-circle">
+                  <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
+                  <% image_file = task_category_image_map[task.category] || "default.png" %>
+                  <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
+                </div>
+                <div class="task-title">
+                  <%= task.title %>
                 </div>
               </div>
-              <div class="progress-circle">
-                <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
-                <% image_file = task_category_image_map[task.category] || "default.png" %>
-                <img class="icon" src="<%= asset_path(image_file) %>" alt="Task">
-              </div>
-              <div class="task-title">
-                <%= task.title %>
-              </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -83,11 +90,17 @@
           <% @current_month_dates.each_slice(7) do |week| %>
             <tr>
               <% week.each do |date| %>
-                <td class="<%= 'checked' if @tasks.any? { |task| task.task_logs.exists?(executed_on: date) } %>">
+                <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
+                <% titles = tasks_on_date.map { |t| t.title.presence || "(タスク名なし)" }.join(', ') %>
+                <td
+                  class="calender-cell <%= 'checked' if tasks_on_date.any? %>"
+                  data-task-titles="<%= tasks_on_date.map { |t| t.title.presence || '(タスク名なし)' }.join(',') %>"
+                >
                   <div class="task-background">
-                    <% tasks_on_date = @tasks.select { |task| task.task_logs.exists?(executed_on: date) } %>
                     <% tasks_on_date.each_with_index do |task, index| %>
-                      <span class="task-span" style="background-color: <%= task.color_code %>; width: <%= 100 / tasks_on_date.size %>%;"></span>
+                      <span class="task-span"
+                        style="background-color: <%= task.color_code %>; width: <%= 100 / tasks_on_date.size %>%;"
+                      ></span>
                     <% end %>
                   </div>
                   <div class="date-number">
@@ -105,13 +118,31 @@
     <div class="graph-wrapper">
       <h4>GRAPH</h4>
       <div class="graph-container">
-        <%= column_chart(
-              @progress_data.map { |date, progress| [date.strftime("%m/%d"), progress] },
-              height: "200px",
-              stacked: true
-            )
-        %>
+        <%= column_chart(@chart_data, height: "200px", stacked: true) %>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="taskModal" class="task-log-modal" style="display: none;">
+  <div class="task-log-modal-content">
+    <ul id="modalTaskList"></ul>
+  </div>
+</div>
+
+<div id="newTaskModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h1> Add New Task...</h1>
+    <div id="newTaskModalBody">
+      <%= render 'form', task: Task.new %>
+    </div>
+  </div>
+</div>
+
+<div id="editTaskModal" class="modal edit-modal" style="display: none;">
+  <div class="modal-content">
+    <h1>Edit Task...</h1>
+    <div id="editTaskModalBody">
     </div>
   </div>
 </div>

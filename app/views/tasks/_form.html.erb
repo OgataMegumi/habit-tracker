@@ -1,22 +1,105 @@
-<%= form_with model: task, local: true do |f| %>
-    <div><%= f.label :title %><br><%= f.text_field :title %></div>
-    <div><%= f.label :description %><br><%= f.text_area :description %></div>
-    <div>
-        <%= f.label :category %>
-        <%= f.select :category, Task::CATEGORIES %>
+<%= form_with model: task , local: false, html: { class: "task-form" } do |f| %>
+  <div class="form-two-column">
+      
+  <!-- 左カラム -->
+    <div class="form-column">
+      <div class="form-group">
+        <%= f.label :title, "目標" %><br>
+        <%= f.text_field :title, class: "input-form" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description,"メモ"  %><br>
+        <%= f.text_area :description, class: "form-textarea" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :category, "カテゴリー" %><br>
+        <%= f.select :category, Task::CATEGORIES, {}, class: "category-select" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :frequency_unit, "頻度" %><br>
+        <%= f.select :frequency_number, Task::FREQUENCY_RANGE, {}, class: "form-select" %>
+        <%= f.select :frequency_unit, Task::FREQUENCY_UNITS_LIST, {}, class: "form-select" %> に1回
+      </div>
     </div>
-    <div>
-        <%= f.label :frequency_unit %>
-        <%= f.select :frequency_number, Task::FREQUENCY_RANGE %>
-        <%= f.select :frequency_unit, Task::FREQUENCY_UNITS_LIST %> に1回
+  
+    <!-- 右カラム -->
+    <div class="form-column">
+      <div class="form-group">
+        <%= f.label :message, "自分への応援メッセージ" %><br>
+        <%= f.text_area :message, class: "form-textarea" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :start_date, "開始日", for: nil %><br>
+        
+        <select name="task[start_date(1i)]" class="form-select">
+            <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= task.start_date&.year == year ? "selected" : "" %>><%= year %></option>
+            <% end %>
+        </select>年
+        
+        <select name="task[start_date(2i)]" class="form-select">
+            <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= task.start_date&.month == month ? "selected" : "" %>><%= month %></option>
+            <% end %>
+        </select>月
+        
+        <select name="task[start_date(3i)]" class="form-select">
+            <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= task.start_date&.day == day ? "selected" : "" %>><%= day %></option>
+            <% end %>
+        </select>日
+      </div>
+
+      <div class="form-group">
+        <%= f.label :end_date, "完了日", for: nil %><br>
+
+        <select name="task[end_date(1i)]" class="form-select">
+            <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= task.end_date&.year == year ? "selected" : "" %>><%= year %></option>
+            <% end %>
+        </select>年
+
+        <select name="task[end_date(2i)]" class="form-select">
+            <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= task.end_date&.month == month ? "selected" : "" %>><%= month %></option>
+            <% end %>
+        </select>月
+
+        <select name="task[end_date(3i)]" class="form-select">
+            <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= task.end_date&.day == day ? "selected" : "" %>><%= day %></option>
+            <% end %>
+        </select>日
+      </div>
+
+  
+      <div class="form-group">
+        <%= f.label :color, "テーマカラー", for: nil %><br>
+        <%= f.hidden_field :color, id: "task_color" %>
+            <div id="color_palette">
+            <% Task::COLOR_CODES.each do |name, code| %>
+                <div
+                class="color-swatch"
+                data-color-name="<%= name %>"
+                data-color-code="<%= code %>"
+                style="border-color: <%= code %>; background-color: <%= code %>66;"
+                title="<%= name %>"
+                >
+                <span class="checkmark">✔︎</span>
+                </div>
+            <% end %>
+            </div>
+      </div>
+
+      <div id="modal-errors"></div>
+
+      <div class="submit-button"><%= f.submit %></div>
     </div>
-    <div><%= f.label :message %><br><%= f.text_area :message %></div>
-    <div><%= f.label :start_date %><br><%= f.datetime_select :start_date %></div>
-    <div><%= f.label :end_date %><br><%= f.datetime_select :end_date %></div>
-    <div>
-        <%= f.label :color %>
-        <%= f.select :color, Task::COLORS %>
-    </div>
-    <div><%= f.submit %></div>
-  <% end %>
+  
+  </div>
+<% end %>
   

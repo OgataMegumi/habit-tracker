@@ -1,0 +1,79 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: "メールアドレスが正常に確認されました。"
+      send_instructions: "数分以内に確認方法の案内メールをお送りします。"
+      send_paranoid_instructions: "もしあなたのメールアドレスが登録されていれば、数分以内に確認方法の案内メールをお送りします。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントがまだ有効化されていません。"
+      invalid: "メールアドレスまたはパスワードが無効です。"
+      locked: "アカウントがロックされています。"
+      last_attempt: "アカウントがロックされる前の最後の試行です。"
+      not_found_in_database: "メールアドレスまたはパスワードが無効です。"
+      timeout: "セッションの有効期限が切れました。続行するには再度ログインしてください。"
+      unauthenticated: "続行するにはログインまたは登録が必要です。"
+      unconfirmed: "続行するにはメールアドレスの確認が必要です。"
+    mailer:
+      confirmation_instructions:
+        subject: "確認手続きのご案内"
+      reset_password_instructions:
+        subject: "パスワードリセットのご案内"
+      unlock_instructions:
+        subject: "アカウントロック解除のご案内"
+      email_changed:
+        subject: "メールアドレス変更のお知らせ"
+      password_change:
+        subject: "パスワード変更のお知らせ"
+    omniauth_callbacks:
+      failure: "%{kind}の認証に失敗しました：\"%{reason}\""
+      success: "%{kind}アカウントで正常に認証されました。"
+    passwords:
+      no_token: "パスワードリセット用のメールからアクセスしてください。URLが正しいかご確認ください。"
+      send_instructions: "数分以内にパスワードリセット方法の案内メールをお送りします。"
+      send_paranoid_instructions: "もしあなたのメールアドレスが登録されていれば、数分以内にパスワード回復用リンクをお送りします。"
+      updated: "パスワードが正常に変更されました。現在ログイン中です。"
+      updated_not_active: "パスワードが正常に変更されました。"
+    registrations:
+      destroyed: "さようなら！アカウントは正常にキャンセルされました。またのご利用をお待ちしています。"
+      signed_up: "ようこそ！登録が完了しました。"
+      signed_up_but_inactive: "登録は完了しましたが、アカウントがまだ有効化されていないためログインできません。"
+      signed_up_but_locked: "登録は完了しましたが、アカウントがロックされているためログインできません。"
+      signed_up_but_unconfirmed: "確認用リンクを含むメールを送信しました。メールのリンクをクリックしてアカウントを有効化してください。"
+      update_needs_confirmation: "アカウントは更新されましたが、新しいメールアドレスの確認が必要です。メールを確認して確認リンクをクリックしてください。"
+      updated: "アカウントは正常に更新されました。"
+      updated_but_not_signed_in: "アカウントは正常に更新されましたが、パスワードが変更されたため再度ログインが必要です。"
+    sessions:
+      signed_in: "正常にログインしました。"
+      signed_out: "正常にログアウトしました。"
+      already_signed_out: "正常にログアウトしました。"
+    unlocks:
+      send_instructions: "数分以内にアカウントロック解除方法の案内メールをお送りします。"
+      send_paranoid_instructions: "アカウントが存在すれば、数分以内に解除方法の案内メールをお送りします。"
+      unlocked: "アカウントのロックを正常に解除しました。ログインしてください。"
+  errors:
+    messages:
+      already_confirmed: "すでに確認されています。ログインしてください。"
+      confirmation_period_expired: "%{period}以内に確認してください。新しい確認メールをリクエストしてください。"
+      expired: "期限切れです。新しい確認メールをリクエストしてください。"
+      not_found: "見つかりません。"
+      not_locked: "ロックされていません。"
+      not_saved:
+        one: "1 件のエラーのため %{resource} は保存されませんでした："
+        other: "%{count} 件のエラーのため %{resource} は保存されませんでした："
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用のパスワード
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "%{count}文字以上で入力してください"
+            password_confirmation:
+              confirmation: "とパスワードの入力が一致しません"

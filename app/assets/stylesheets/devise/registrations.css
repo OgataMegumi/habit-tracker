@@ -1,0 +1,55 @@
+.sign-up-title {
+  max-width: 500px;
+  margin: 0 auto 0.5rem;
+}
+
+.registration-form label {
+  font-size: 0.8rem;
+}
+
+.registration-form {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.registration-form .field {
+  margin-bottom: 1rem;
+}
+
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+  margin-top: 5px;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.registration-form .actions {
+  text-align: center;
+}
+
+.registration-form .actions input[type="submit"] {
+  padding: 0.5rem 1rem;
+  background-color: #f6f6f6;
+  color: #464646;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 0.9px solid #ccc;
+}
+
+.devise-links {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
