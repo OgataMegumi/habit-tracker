@@ -32,50 +32,53 @@
         <%= f.text_area :message, class: "form-textarea" %>
       </div>
 
+      <% selected_date = task.start_date || Date.today %>
+
       <div class="form-group">
         <%= f.label :start_date, "開始日", for: nil %><br>
-        
+      
         <select name="task[start_date(1i)]" class="form-select">
-            <% (2020..2030).each do |year| %>
-            <option value="<%= year %>" <%= task.start_date&.year == year ? "selected" : "" %>><%= year %></option>
-            <% end %>
+          <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= selected_date.year == year ? "selected" : "" %>><%= year %></option>
+          <% end %>
         </select>年
-        
+      
         <select name="task[start_date(2i)]" class="form-select">
-            <% (1..12).each do |month| %>
-            <option value="<%= month %>" <%= task.start_date&.month == month ? "selected" : "" %>><%= month %></option>
-            <% end %>
+          <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= selected_date.month == month ? "selected" : "" %>><%= month %></option>
+          <% end %>
         </select>月
-        
+      
         <select name="task[start_date(3i)]" class="form-select">
-            <% (1..31).each do |day| %>
-            <option value="<%= day %>" <%= task.start_date&.day == day ? "selected" : "" %>><%= day %></option>
-            <% end %>
+          <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= selected_date.day == day ? "selected" : "" %>><%= day %></option>
+          <% end %>
         </select>日
-      </div>
+      </div>      
+
+      <% selected_end_date = task.end_date || Date.today %>
 
       <div class="form-group">
         <%= f.label :end_date, "完了日", for: nil %><br>
 
         <select name="task[end_date(1i)]" class="form-select">
-            <% (2020..2030).each do |year| %>
-            <option value="<%= year %>" <%= task.end_date&.year == year ? "selected" : "" %>><%= year %></option>
-            <% end %>
+          <% (2020..2030).each do |year| %>
+            <option value="<%= year %>" <%= selected_end_date.year == year ? "selected" : "" %>><%= year %></option>
+          <% end %>
         </select>年
 
         <select name="task[end_date(2i)]" class="form-select">
-            <% (1..12).each do |month| %>
-            <option value="<%= month %>" <%= task.end_date&.month == month ? "selected" : "" %>><%= month %></option>
-            <% end %>
+          <% (1..12).each do |month| %>
+            <option value="<%= month %>" <%= selected_end_date.month == month ? "selected" : "" %>><%= month %></option>
+          <% end %>
         </select>月
 
         <select name="task[end_date(3i)]" class="form-select">
-            <% (1..31).each do |day| %>
-            <option value="<%= day %>" <%= task.end_date&.day == day ? "selected" : "" %>><%= day %></option>
-            <% end %>
+          <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= selected_end_date.day == day ? "selected" : "" %>><%= day %></option>
+          <% end %>
         </select>日
       </div>
-
   
       <div class="form-group">
         <%= f.label :color, "テーマカラー", for: nil %><br>

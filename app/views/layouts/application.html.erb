@@ -31,12 +31,16 @@
 
   <body class="<%= "#{controller_name}-#{action_name}" %>">
     <div class="header">
-      <%= link_to "HOME", tasks_path(current_user), class: "btn btn-primary" %>
-      <%= link_to "このポートフォリオについて", root_path, class: "logo" %>
+      <%= link_to "HOME", tasks_path(current_user), class: "home-btn" %>
+      
+      <% unless controller_name == "home" && action_name == "index" %>
+        <%= link_to "このポートフォリオについて", root_path, class: "about-app" %>
+      <% end %>
+
       <% unless devise_controller? && hide_header_for_devise_page? %>
         <% if user_signed_in? %>
           <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
-            <%= submit_tag "ログアウト", class: "btn btn-danger" %>
+            <%= submit_tag "ログアウト", class: "btn" %>
           <% end %>
         <% else %>
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>

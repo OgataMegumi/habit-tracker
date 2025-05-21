@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
 }
 
 h4 {
@@ -61,7 +61,7 @@ h4 {
   background: #fff;
   border-radius: 20px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +73,7 @@ h4 {
 
 .task-card:hover {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -85,7 +85,7 @@ h4 {
   justify-content: center;
   text-decoration: none;
   color: inherit;
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
   border: 3px dashed #afafaf;
 }
 
@@ -234,7 +234,7 @@ h4 {
   background-color: #fff;
   border-radius: 20px;
   padding: 16px;
-  /* width: 570px; */
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
 .calendar {
@@ -264,7 +264,7 @@ h4 {
 }
 
 .calender td.checked {
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
 }
 
 .calendar td .circle-indicator {
@@ -314,6 +314,7 @@ h4 {
   padding: 16px;
   background-color: #fff;
   border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
 /* ----------タスク登録・編集---------- */
@@ -341,33 +342,20 @@ h4 {
   font-size: 1rem;
 }
 
-.task-form .btn-primary {
-  background-color: #007bff;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.task-form .btn-primary:hover {
-  background-color: #0056b3;
-}
-
 .search-form {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
-  align-items: center;  /* 垂直方向の中央揃え */
+  align-items: center;
 }
 
 .task-search-input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 30px;
+  border: 2px solid #8e8e8e;
   width: 200px;
-  height: 28px;
-  font-size: 14px;
+  height: 10px;
+  font-size: 13px;
 }
 
 .search-form-inner {
@@ -393,15 +381,6 @@ h4 {
 }
 
 .all-tasks-button {
-  /* height: 36px;
-  line-height: 36px;
-  padding: 0 12px;
-  border-radius: 6px;
-  background-color: #ffffff;
-  text-decoration: none;
-  color: #2f812f;
-  font-weight: bold;
-  font-size: 12px; */
   margin-left: 20px;
 }
 

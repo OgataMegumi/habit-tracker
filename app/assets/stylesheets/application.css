@@ -16,3 +16,39 @@ body.home-index {
   background-color: white;
   border-radius: 20px;
 }
+
+input[type="submit"] {
+  border-radius: 30px;
+  padding: 15px;
+  border: none;
+  background-color: #ffed65;
+  color: darkgreen;
+  height: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home-btn {
+  text-decoration: none;
+  width: 66px;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 15px;
+  border: none;
+  background-color: #a2e6f5;
+  color: darkgreen;
+  font-weight: bold;
+  text-align: center;
+}
+
+.about-app {
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 15px;
+  border: none;
+  background-color: #ffc118;
+  color: darkgreen;
+  font-weight: bold;
+  text-align: center;
+}
