@@ -97,7 +97,7 @@ class TasksController < ApplicationController
   def tasks_grouped_by_date(tasks)
     tasks.each_with_object(Hash.new([])) do |task, hash|
       task.task_logs.each do |log|
-        hash[log.executed_on] += [task]
+        hash[log.executed_on] += [ task ]
       end
     end
   end
