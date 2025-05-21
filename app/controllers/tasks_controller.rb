@@ -19,7 +19,7 @@ class TasksController < ApplicationController
 
     @chart_data = date_range.map do |date|
       progress = @progress_data[date] || 0
-      [date.strftime("%m/%d"), progress]
+      [ date.strftime("%m/%d"), progress ]
     end
   end
 
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       @in_progress_tasks = Task.in_progress_for(current_user)
-  
+
       respond_to do |format|
         format.js
         format.html { redirect_to tasks_path }
@@ -76,7 +76,7 @@ class TasksController < ApplicationController
       end
     end
   end
-  
+
 
   def destroy
     @task.destroy
