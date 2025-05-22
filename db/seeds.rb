@@ -95,10 +95,14 @@ task_templates.each_with_index do |template, i|
   log_days = may_days.sample(log_count)
 
   log_days.each do |day|
-    task_log = task.task_logs.new(executed_on: day)
-    unless task_log.save
-      puts "Failed to save task_log for task id=#{task.id}, executed_on=#{day}"
-      puts task_log.errors.full_messages
+    unless task.task_logs.exists?(executed_on: day)
+      task_log = task.task_logs.new(executed_on: day)
+      unless task_log.save
+        puts "Failed to save task_log for task id=#{task.id}, executed_on=#{day}"
+        puts task_log.errors.full_messages
+      end
+    else
+      puts "Skipped duplicate task_log for task id=#{task.id}, executed_on=#{day}"
     end
   end
 end
@@ -110,10 +114,15 @@ completed_tasks.each do |task|
   future_days = valid_days.sample([ 5, valid_days.size ].min)
 
   future_days.each do |day|
-    task_log = task.task_logs.new(executed_on: day)
-    unless task_log.save
-      puts "Failed to save completed task_log for task id=#{task.id}, executed_on=#{day}"
-      puts task_log.errors.full_messages
+    unless task.task_logs.exists?(executed_on: day)
+      task_log = task.task_logs.new(executed_on: day)
+      begin
+        task_log.save!
+      rescue ActiveRecord::RecordNotUnique
+        puts "Skipped duplicate completed task_log for task id=#{task.id}, executed_on=#{day} (caught exception)"
+      end
+    else
+      puts "Skipped duplicate completed task_log for task id=#{task.id}, executed_on=#{day}"
     end
   end
 end
