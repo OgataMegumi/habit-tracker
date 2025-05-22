@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     @completed_tasks   = Task.completed_for(current_user, keyword)
 
     @tasks = current_user.tasks.includes(:task_logs)
+    @tasks_on_date = tasks_grouped_by_date(@tasks)
     @random_message = current_user.tasks.pluck(:message).sample
     @current_month_dates = Task.dates_in_current_month
     @progress_data = TaskLog.calculate_daily_progress(current_user)
@@ -40,7 +41,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(color: "orange")
   end
 
   def edit_modal
@@ -91,5 +92,13 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :description, :category, :frequency, :message, :start_date, :end_date, :color, :frequency_number, :frequency_unit)
+  end
+
+  def tasks_grouped_by_date(tasks)
+    tasks.each_with_object(Hash.new([])) do |task, hash|
+      task.task_logs.each do |log|
+        hash[log.executed_on] += [ task ]
+      end
+    end
   end
 end

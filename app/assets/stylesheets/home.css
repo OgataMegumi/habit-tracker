@@ -1,0 +1,134 @@
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+p.description {
+  font-size: 1rem;
+  color: #020202;
+  margin: 40px auto;
+}
+
+img.main-image {
+  max-width: 800px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.overview {
+  text-align: center;
+}
+
+.info-section .container {
+  color: #020202;
+  max-width: 800px;
+  margin: 0 280px;
+  text-align: left;
+  line-height: 2;
+  font-size: 0.9rem;
+}
+
+.info-section .app-info-container {
+  text-align: center;
+  background-color: #fff;
+  padding: 50px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: #020202;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-top: 1.2rem;
+  color: #020202;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.subsection ul {
+  padding-left: 0;
+}
+
+.subsection ol {
+  padding-left: 0;
+}
+
+.toast {
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  background: rgba(0,0,0,0.8); 
+  color: white; 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  font-size: 14px; 
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.3s ease;
+}
+
+.demo-account {
+  margin: 30px 0;
+}
+
+.account-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.account-info .copy-text {
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.account-info {
+  margin: 0 auto;
+  width: 300px;
+  text-align: left;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.subsection.links ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.info-section {
+  margin-bottom: 100px;
+}

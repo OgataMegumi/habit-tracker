@@ -12,6 +12,9 @@ class Task < ApplicationRecord
   validates :category, inclusion: { in: CATEGORIES }
   validates :color, inclusion: { in: COLORS }
   validates :title, length: { maximum: 15 }
+  validates :description, length: { maximum: 50 }
+  validates :message, length: { maximum: 50 }
+  validates :title, presence: true
 
   def color_code
     COLOR_CODES[self.color]
@@ -46,5 +49,9 @@ class Task < ApplicationRecord
     tasks = user.tasks.includes(:task_logs)
     tasks = tasks.select(&:completed?)
     keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
+  end
+
+  def executed_today?
+    task_logs.exists?(executed_on: Date.current)
   end
 end

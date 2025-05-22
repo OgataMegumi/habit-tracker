@@ -1,6 +1,6 @@
 html, body {
-  height: 100%;
-  background-color: #f0f0f0;
+  /* height: 100%; */
+  background-color: #f7f7f7;
 }
 
 h4 {
@@ -46,6 +46,49 @@ h4 {
 
 /* ----------TO DO---------- */
 
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-icon .info-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.tooltip-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 230px;
+  background-color: #fff;
+  text-align: left;
+  border-radius: 8px;
+  padding: 9px;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 130%;
+  transform: translate(0, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 9px;
+  pointer-events: none;
+}
+
+.tooltip-icon:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 .task-list-wrapper {
   padding: 16px;
 }
@@ -61,19 +104,19 @@ h4 {
   background: #fff;
   border-radius: 20px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 200px;
-  height: 180px;
+  width: 230px;
+  height: auto;
 }
 
 .task-card:hover {
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
-  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -85,8 +128,16 @@ h4 {
   justify-content: center;
   text-decoration: none;
   color: inherit;
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
   border: 3px dashed #afafaf;
+  min-height: 190px;
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+.task-card.completed:hover {
+  background-color: white;
+  transform: translateY(-0px);
 }
 
 .new-task-card:hover {
@@ -182,6 +233,7 @@ h4 {
   font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
+  max-width: 180px;
 }
 
 .task-card .actions {
@@ -200,19 +252,8 @@ h4 {
   z-index: 2;
 }
 
-.task-card.completed:hover {
-  background-color: inherit !important;
-  box-shadow: none !important;
-  transform: none !important;
-  cursor: default;
-}
-
 .completed_tasks_list {
   margin-top: 20px;
-}
-
-.task-title.executed {
-  text-decoration: line-through;
 }
 
 /* ================================================= */
@@ -234,7 +275,7 @@ h4 {
   background-color: #fff;
   border-radius: 20px;
   padding: 16px;
-  /* width: 570px; */
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
 .calendar {
@@ -256,15 +297,16 @@ h4 {
 
 .calendar td {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #dedede;
   width: 14.28%;
   min-width: 40px;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .calender td.checked {
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
 }
 
 .calendar td .circle-indicator {
@@ -291,13 +333,12 @@ h4 {
 .calendar td .task-background span {
   display: inline-block;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 5px;
-  /* position: relative; */
 }
 
 .calendar td .task-background span:last-child {
-  margin-right: 0; /* 最後のspanには余白を付けない */
+  margin-right: 0;
 }
 
 .calender td .date-number {
@@ -314,6 +355,7 @@ h4 {
   padding: 16px;
   background-color: #fff;
   border-radius: 20px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
 /* ----------タスク登録・編集---------- */
@@ -337,37 +379,24 @@ h4 {
   width: 100%;
   padding: 0.5rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #dedede;
   font-size: 1rem;
-}
-
-.task-form .btn-primary {
-  background-color: #007bff;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.task-form .btn-primary:hover {
-  background-color: #0056b3;
 }
 
 .search-form {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
-  align-items: center;  /* 垂直方向の中央揃え */
+  align-items: center;
 }
 
 .task-search-input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 200px;
-  height: 28px;
-  font-size: 14px;
+  padding: 15px;
+  border-radius: 30px;
+  border: 2px solid #8e8e8e;
+  width: 160px;
+  height: 10px;
+  font-size: 13px;
 }
 
 .search-form-inner {
@@ -388,21 +417,12 @@ h4 {
 }
 
 .search-icon {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
 }
 
-.all-tasks-button {
-  /* height: 36px;
-  line-height: 36px;
-  padding: 0 12px;
-  border-radius: 6px;
-  background-color: #ffffff;
-  text-decoration: none;
-  color: #2f812f;
-  font-weight: bold;
-  font-size: 12px; */
-  margin-left: 20px;
+.all-tasks-btn:hover {
+  background-color: #c8fdb8;
 }
 
 
@@ -476,3 +496,53 @@ h4 {
   width: 1000px;
 }
 
+.task-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.executed-icon {
+  width: 30px;
+  height: 30px;
+  display: none;
+}
+
+.submit-button {
+  padding-left: 310px;
+}
+
+.form-textarea::placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}
+
+.input-form::placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}
+
+.char-count {
+  font-size: 10px;
+  color: #6b6b6b;
+  margin-top: 4px;
+  text-align: right;
+  font-weight: bold;
+}
+
+#modal-errors ul {
+  color: #ff272e;
+  margin-top: 10px;
+  font-size: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.required-mark {
+  color: #ff272e;
+  font-weight: bold;
+}
+
+.input-form.error {
+  border: 1px solid #ff272e;
+}

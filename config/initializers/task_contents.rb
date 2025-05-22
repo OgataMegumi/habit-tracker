@@ -2,25 +2,26 @@ module TaskContents
     FREQUENCY_UNITS_LIST = [ "時間", "日", "週", "ヶ月" ]
 
     CATEGORIES_GROUPS = {
-    "運動" => [ "ランニング", "ウォーキング", "筋トレ", "ストレッチ", "ヨガ", "これ以外" ],
-    "金融" => [ "貯金", "投資" ],
-    "学習" => [ "プログラミング", "語学", "英会話" ],
-    "キャリア" => [ "タスク管理", "スキルアップ", "副業" ],
-    "健康" => [ "メンタルケア", "睡眠", "バランスのいい食事", "自炊", "糖質制限", "ダイエット" ],
-    "趣味" => [ "音楽", "執筆", "写真", "アウトドア" ],
-    "社会活動" => [ "ボランティア", "イベント参加", "交流" ],
-    "ライフログ" => [ "読書", "日記" ],
-    "生活" => [ "部屋の片付け", "断捨離", "デジタルデトックス" ],
-    "その他" => [ "どれとも違う素敵なカテゴリ" ]
+        "Exercise" => [ "Running", "Walking", "Strength Training", "Stretching", "Yoga", "Other Sports" ],
+        "Finance" => [ "Saving", "Investing" ],
+        "Learning" => [ "Programming", "Languages", "English Conversation" ],
+        "Career" => [ "Task Management", "Skill Development", "Side Job" ],
+        "Health" => [ "Mental Care", "Sleep", "Balanced Diet", "Home Cooking", "Low-Carb Diet", "Dieting" ],
+        "Hobbies" => [ "Music", "Writing", "Photography", "Outdoor Activities" ],
+        "Social Activities" => [ "Volunteering", "Event Participation", "Networking" ],
+        "Life Logging" => [ "Reading", "Journaling" ],
+        "Daily Life" => [ "Tidying Up", "Decluttering", "Digital Detox" ],
+        "Others" => [ "Other" ]
     }
 
-    COLORS = [ "赤", "青", "緑", "黄", "黄緑" ]
+    COLORS = %w[orange blue green yellow yellowgreen red]
 
     COLOR_CODES = {
-    "赤" => "#ff272e",
-    "青" => "#5fa9cb",
-    "緑" => "#1F785B",
-    "黄" => "#FAB700",
-    "黄緑" => "#B1DF43"
+    "orange" => "#ff9318",
+    "blue" => "#5fa9cb",
+    "green" => "#1f785b",
+    "yellow" => "#fab700",
+    "yellowgreen" => "#b1df43",
+    "red" => "#ff272e"
     }
 end

@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.json())
         .then(data => {
-          // 取り消し線の切り替え処理
-          const titleEl = card.querySelector(".task-title");
+          // 実行済みアイコン表示
+          const titleIconEl = card.querySelector(".executed-icon");
           if (data.executed) {
-            titleEl.classList.add("executed");
+            titleIconEl.style.display = "inline-block";
           } else {
-            titleEl.classList.remove("executed");
+            titleIconEl.style.display = "none";
           }
 
           // 進捗グラフ更新処理
