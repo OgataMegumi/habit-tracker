@@ -1,4 +1,39 @@
-ja:  
+ja: 
+  task:
+    categories:
+      Running: ランニング
+      Walking: ウォーキング
+      Strength Training: 筋トレ
+      Stretching: ストレッチ
+      Yoga: ヨガ
+      Other Sports: その他のスポーツ
+      Saving: 貯金
+      Investing: 投資
+      Programming: プログラミング
+      Languages: 語学
+      English Conversation: 英会話
+      Task Management: タスク管理
+      Skill Development: スキルアップ
+      Side Job: 副業
+      Mental Care: メンタルケア
+      Sleep: 睡眠
+      Balanced Diet: バランスのいい食事
+      Home Cooking: 自炊
+      Low-Carb Diet: 糖質制限
+      Dieting: ダイエット
+      Music: 音楽
+      Writing: 執筆
+      Photography: 写真
+      Outdoor Activities: アウトドア
+      Volunteering: ボランティア
+      Event Participation: イベント参加
+      Networking: 交流
+      Reading: 読書
+      Journaling: 日記
+      Tidying Up: 部屋の片付け
+      Decluttering: 断捨離
+      Digital Detox: デジタルデトックス
+      Other: これ以外
   date:
     month_names:
       - ~
