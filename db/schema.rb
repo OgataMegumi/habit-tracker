@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_13_053938) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_22_085210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_053938) do
     t.date "executed_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["task_id", "executed_on"], name: "index_task_logs_on_task_id_and_executed_on", unique: true
     t.index ["task_id"], name: "index_task_logs_on_task_id"
   end
 
