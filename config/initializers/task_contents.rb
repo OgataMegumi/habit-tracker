@@ -1,5 +1,5 @@
 module TaskContents
-    FREQUENCY_UNITS_LIST = ["日"]
+    FREQUENCY_UNITS_LIST = [ "日" ]
 
     CATEGORIES_GROUPS = {
         "Exercise" => [ "Running", "Walking", "Strength Training", "Stretching", "Yoga", "Other Sports" ],

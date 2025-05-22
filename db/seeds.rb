@@ -91,23 +91,23 @@ task_templates.each_with_index do |template, i|
   )
 
   log_count = rand(2..5)
-  may_days = (Date.new(2025,5,1)..Date.new(2025,5,31)).to_a
+  may_days = (Date.new(2025, 5, 1)..Date.new(2025, 5, 31)).to_a
   log_days = may_days.sample(log_count)
-  
+
   log_days.each do |day|
     task_log = task.task_logs.new(executed_on: day)
     unless task_log.save
       puts "Failed to save task_log for task id=#{task.id}, executed_on=#{day}"
       puts task_log.errors.full_messages
     end
-  end 
+  end
 end
 
 completed_tasks = demo_user.tasks.limit(5)
 
 completed_tasks.each do |task|
   valid_days = (task.start_date..Date.today + 10).to_a
-  future_days = valid_days.sample([5, valid_days.size].min)
+  future_days = valid_days.sample([ 5, valid_days.size ].min)
 
   future_days.each do |day|
     task_log = task.task_logs.new(executed_on: day)
