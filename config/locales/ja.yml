@@ -58,6 +58,8 @@ ja:
       task:
         title: 目標
     errors:
+      messages:
+        record_invalid: "無効なレコードです"
       models:
         task:
           attributes:
