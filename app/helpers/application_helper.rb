@@ -34,7 +34,7 @@ module ApplicationHelper
       "Decluttering" => "decluttering.png",
       "Digital Detox" => "digital_detox.png",
       "Other" => "other.png"
-    }    
+    }
   end
 
   def hide_header_for_devise_page?
