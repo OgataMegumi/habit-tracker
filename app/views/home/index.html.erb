@@ -2,38 +2,151 @@
 <html>
 <head>
   <title>やるる - 習慣化アプリ</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    p.description {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #555;
-    }
-
-    img.main-image {
-      max-width: 800px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-  </style>
 </head>
 <body>
-  <h1>習慣化アプリ「やるる」</h1>
-  <p class="description">
-    「やるる」は、毎日の小さな行動を楽しく継続できるように手助けする習慣化アプリです。<br>
-    あなたの目標に向けた日々の積み重ねを応援します。
-  </p>
-  <%= image_tag "yaruru_main.png", alt: "やるるのイメージ画像", class: "main-image" %>
+  <div class="info-section">
+    <div class="app-info-container">
+      <h1>習慣化アプリ「やるる」</h1>
+
+      <p class="description">
+        「やるる」は、目標を楽しく継続できるように手助けする習慣化アプリです。<br>
+      </p>
+
+      <%= image_tag "yaruru_main.png", alt: "やるるのイメージ画像", class: "main-image" %>
+
+      <div class="demo-account">
+        <div class="account-title">サンプルアカウント</div>
+        <div class="account-info">
+          <div class="copy-text" data-copy="demo@example.com">メールアドレス：<code>demo@example.com</code></div>
+          <div class="copy-text" data-copy="P@ssw0rd">パスワード：<code>P@ssw0rd</code></div>
+        </div>
+      </div>
+
+      <div id="toast" class="toast"></div>
+    </div>
+
+    <div class="container"> 
+      <section class="subsection overview">
+        <h2>開発概要</h2>
+      </section>
+
+      <section class="subsection concept">
+        <h3>コンセプト・目的</h3>
+        <p>
+          私自身がシンプルかつ直感的に使える習慣化アプリを使いたいと思っていたので、「継続することを楽しめる習慣化アプリ」をテーマに開発しています。<br>
+          今後は、友人のフィードバックを取り入れながら改善・機能追加を進め、最終的にモバイルアプリとして完成させる予定です。
+        </p>
+      </section>
+
+      <section class="subsection duration">
+        <h3>開発期間</h3>
+        <p>3週間（2025年5月〜現在）</p>
+      </section>
+
+      <section class="subsection technologies">
+        <h3>使用技術</h3>
+        <ul>
+          <li><strong>開発環境</strong>：MacBook</li>
+          <li><strong>フロントエンド</strong>：HTML, CSS, JavaScript</li>
+          <li><strong>サーバーサイド</strong>：Ruby</li>
+          <li><strong>フレームワーク</strong>：Ruby on Rails</li>
+          <li><strong>コンテナ環境</strong>：Docker</li>
+          <li><strong>デプロイ</strong>：Render</li>
+          <li><strong>コード管理</strong>：Git, GitHub</li>
+          <li><strong>静的解析</strong>：Rubocop</li>
+        </ul>
+      </section>
+
+      <section class="subsection links">
+        <h3>URL</h3>
+        <ul>
+          <li>
+            デプロイ先URL：
+            <a href="https://habit-tracker-k2f8.onrender.com" target="_blank" rel="noopener noreferrer" class="url-link">
+              https://habit-tracker-k2f8.onrender.com
+            </a>
+            <button class="copy-text" data-copy="https://habit-tracker-k2f8.onrender.com">
+              <%= image_tag("copy_text.png", alt: "コピー", width: "18", height: "16") %>
+            </button>
+          </li>
+          <li>
+            GitHubリポジトリ：
+            <a href="https://github.com/OgataMegumi/habit-tracker" target="_blank" rel="noopener noreferrer" class="url-link">
+              https://github.com/OgataMegumi/habit-tracker
+            </a>
+            <button class="copy-text" data-copy="https://github.com/OgataMegumi/habit-tracker">
+              <%= image_tag("copy_text.png", alt: "コピー", width: "18", height: "16") %>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="subsection points">
+        <h3>工夫したポイント</h3>
+        <ol>
+          <li><strong>使いやすさ</strong></li>
+          <ul>
+            <li>直感的に使いやすいサイトになるよう、UIの構成を考えた</li>
+          </ul>
+          <li><strong>Gemの活用</strong></li>
+          <ul>
+            <li>ログイン関連はdevise、グラフはchartkickなどのGemを利用して、より適切で効率的な開発ができるように心がけた</li>
+          </ul>
+        </ol>
+      </section>
+
+      <section class="subsection caution">
+        <h3>気をつけた点</h3>
+        <ol>
+          <li><strong>エラーを放置しないこと</strong></li>
+          <ul>
+            <li>コンソールに表示されるエラーは都度、解消するように気をつけた</li>
+          </ul>
+          <li><strong>コントローラーの責務を最小限にすること</strong></li>
+          <ul>
+            <li>ヘルパーを利用したり、ロジックをモデルに集約するようにし、できるだけコントローラーは値の受け渡しのみ行うように気をつけた</li>
+          </ul>
+        </ol>
+      </section>
+
+      <section class="subsection issues">
+        <h3>現時点の課題</h3>
+        <ol>
+        <li><strong>ソースコードが最適でない</strong></li>
+        <ul>
+          <li>機能優先で開発してしまい、一部構造化が不十分だったり、変数やメソッドの命名が最適ではないところがある。以降、DIYの原則に則って管理しやすく、機能を拡張しやすいソースコードにリファクタリングしていく。また、最適な構造か判断できる知識が足りないので、引き続きコードの書き方を学習する</li>
+        </ul>
+        <li><strong>RSpecが未実装</strong></li>
+        <ul>
+          <li>機能優先で開発したため、テストの実装も後回しになってしまった</li>
+        </ul>
+        <li><strong>prが雑になってしまった</strong></li>
+        <ul>
+          <li>ドキュメントとしての役割をもたせられるよう、Descriptionに変更内容を残したり、適切な粒度でprを作成する</li>
+        </ul>
+      </ol>
+      </section>
+
+      <section class="subsection future">
+        <h3>今後の展望</h3>
+        <ul>
+          <li>リファクタリングする</li>
+          <li>テスト（RSpec）を実装する</li>
+          <li>Reactを導入し、UI/UXの継続的な改善とともにフロントエンドを強化する</li>
+          <li>
+            実装の練習とサイトの使いやすさ向上を兼ねて、以下の機能を追加
+            <ul>
+              <li>GoogleカレンダーAPIを連携し、Googleカレンダーの予定をタスクとして反映させられるようにする</li>
+              <li>マイページを作成し、ユーザー情報の変更をできるようにする</li>
+              <li>ActiveStorageを利用して画像をアップロードできるようにする</li>
+              <li>レスポンシブ対応にする</li>
+              <li>ダークモードを実装する</li>
+            </ul>
+          </li>
+          <li>セキュリティ対策（内容は調査しながら実装）</li>
+        </ul>
+      </section>
+    </div>
+  </div>
 </body>
 </html>

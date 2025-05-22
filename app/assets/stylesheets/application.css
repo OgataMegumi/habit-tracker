@@ -2,6 +2,7 @@
  *= require tasks
  *= require devise/registrations
  *= require devise/sessions
+ *= require home
  */
 
  .header {
@@ -10,11 +11,6 @@
   justify-content: flex-end;
   gap: 20px;
   padding: 15px;
-}
-
-body.home-index {
-  background-color: white;
-  border-radius: 20px;
 }
 
 input[type="submit"] {

@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const numberSelect = document.getElementById("task_frequency_number");
   const unitSelect = document.getElementById("task_frequency_unit");
 
+  if (!numberSelect || !unitSelect) return;
+
   const unitOptions = {
     "時間": 24,
     "日": 30,

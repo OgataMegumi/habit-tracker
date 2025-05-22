@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('taskModal');
+  if (!modal) return;
   const modalList = document.getElementById('modalTaskList');
 
   document.querySelectorAll('td[data-task-titles]').forEach(cell => {
