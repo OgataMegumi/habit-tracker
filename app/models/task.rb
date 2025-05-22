@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   has_many :task_logs, dependent: :destroy
   belongs_to :user
 
-  FREQUENCY_RANGE = (1..12).to_a
+  FREQUENCY_RANGE = [ 1 ]
   CATEGORIES = CATEGORIES_GROUPS.values.flatten
 
   validates :frequency_number, inclusion: { in: FREQUENCY_RANGE }
