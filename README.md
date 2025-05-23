@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+renderのシェルでRialsコンソール起動
+```
+RAILS_ENV=production rails console
+```
