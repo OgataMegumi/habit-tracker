@@ -2,8 +2,6 @@ class TaskLog < ApplicationRecord
   belongs_to :task
   belongs_to :user, optional: true
 
-  before_validation :set_user_from_task
-
   validates :executed_on, presence: true
 
   def self.done_days(task)
@@ -17,7 +15,7 @@ class TaskLog < ApplicationRecord
     if log
       log.destroy
     else
-      create!(task: task, executed_on: date)
+      create!(task: task, user_id: task.user_id, executed_on: date)
     end
   end
 
@@ -52,11 +50,5 @@ class TaskLog < ApplicationRecord
 
       [ date.strftime("%m/%d"), percentage ]
     end
-  end
-
-  private
-
-  def set_user_from_task
-    self.user_id ||= task.user_id if task.present?
   end
 end
