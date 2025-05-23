@@ -6,13 +6,13 @@
       <div class="form-group">
         <%= f.label :title, "目標 <span class='required-mark'>*</span>".html_safe %><br>
         <%= f.text_field :title, class: "input-form", placeholder: "毎日3kmランニングする！", maxlength: 15 %>
-        <div id="title_char_count" class="char-count">0/15</div>
+        <div id="title_char_count" class="char-count"><%= task.title.to_s.length %>/15</div>
       </div>
 
       <div class="form-group">
         <%= f.label :description,"メモ"  %><br>
         <%= f.text_area :description, class: "form-textarea", placeholder: "平日はAルート、休日はBルートを走る", maxlength: 50 %>
-        <div id="description_char_count" class="char-count">0/50</div>
+        <div id="description_char_count" class="char-count"><%= task.description.to_s.length %>/50</div>
       </div>
 
       <div class="form-group">
@@ -34,7 +34,7 @@
       <div class="form-group">
         <%= f.label :message, "自分への応援メッセージ" %><br>
         <%= f.text_area :message, class: "form-textarea", placeholder: "来月の25kmマラソンに向けてがんばれ！", maxlength: 50 %>
-        <div id="message_char_count" class="char-count">0/50</div>
+        <div id="message_char_count" class="char-count"><%= task.message.to_s.length %>/50</div>
       </div>
 
       <% selected_date = task.start_date || Date.today %>
