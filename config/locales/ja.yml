@@ -74,3 +74,5 @@ ja:
               inclusion: "を選んでね"
             category:
               inclusion: "を選んでね"
+            end_date:
+              after_or_equal_to_start_date: "は開始日と同じ日か、それ以降の日付を選んでね"

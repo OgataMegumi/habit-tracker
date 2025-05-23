@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get "pages/about"
   root to: "home#index"
   devise_for :users
-  resources :users, only: [ :show ]
+
+  resource :user do
+    patch :toggle_completed_tasks
+  end
 
   resources :tasks do
     member do

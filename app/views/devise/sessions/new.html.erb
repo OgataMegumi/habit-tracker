@@ -7,9 +7,14 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
+    <div class="field password-wrapper">
       <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="password-input-container">
+        <%= f.password_field :password, autocomplete: "current-password", id: "user_current_password" %>
+        <span class="toggle-password-visibility" data-target="user_current_password">
+          <i class="fa-solid fa-eye-slash" style="color: #afafaf;"></i>
+        </span>
+      </div>
     </div>
 
     <% if devise_mapping.rememberable? %>

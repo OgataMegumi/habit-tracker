@@ -39,6 +39,10 @@ class Task < ApplicationRecord
     (start_date..end_date).to_a
   end
 
+  def self.current_month
+    Date.current.month
+  end
+
   def self.in_progress_for(user, keyword = nil)
     tasks = user.tasks.includes(:task_logs)
     tasks = tasks.select { |t| !t.completed? }
@@ -53,5 +57,13 @@ class Task < ApplicationRecord
 
   def executed_today?
     task_logs.exists?(executed_on: Date.current)
+  end
+
+  private
+
+  def end_date_after_start_date
+    if end_date.present? && start_date.present? && end_date < start_date
+      errors.add(:end_date, :after_or_equal_to_start_date)
+    end
   end
 end

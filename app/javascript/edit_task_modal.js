@@ -19,10 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const modal = document.querySelector("#editTaskModal");
+  const closeEditTaskBtn = document.getElementById('closeEditTaskModal');
 
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
     }
   });
+
+  if (closeEditTaskBtn) {
+    closeEditTaskBtn.addEventListener('click', () => {
+      editTaskModal.style.display = 'none';
+    });
+  }
+
 });
