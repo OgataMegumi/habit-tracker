@@ -15,6 +15,7 @@ class Task < ApplicationRecord
   validates :description, length: { maximum: 50 }
   validates :message, length: { maximum: 50 }
   validates :title, presence: true
+  validate :end_date_after_start_date
 
   def color_code
     COLOR_CODES[self.color]
