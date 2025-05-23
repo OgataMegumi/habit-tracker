@@ -21,10 +21,10 @@
 
 .registration-form input[type="email"],
 .registration-form input[type="password"] {
-  margin-top: 5px;
+  margin-top: 10px;
   width: 100%;
   padding: 0.8rem;
-  border: 1.5px solid #dedede;
+  border: 0.9px solid #ccc;
   border-radius: 10px;
   box-sizing: border-box;
 }

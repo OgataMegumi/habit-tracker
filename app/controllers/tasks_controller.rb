@@ -12,16 +12,9 @@ class TasksController < ApplicationController
     @tasks_on_date = tasks_grouped_by_date(@tasks)
     @random_message = current_user.tasks.pluck(:message).sample
     @current_month_dates = Task.dates_in_current_month
+    @current_month = Task.current_month
     @progress_data = TaskLog.calculate_daily_progress(current_user)
-
-    start_date = 13.days.ago.to_date
-    end_date = Date.today
-    date_range = (start_date..end_date).to_a
-
-    @chart_data = date_range.map do |date|
-      progress = @progress_data[date] || 0
-      [ date.strftime("%m/%d"), progress ]
-    end
+    @chart_data = TaskLog.calculate_chart_data(current_user)
   end
 
   def toggle_today

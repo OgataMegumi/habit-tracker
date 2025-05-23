@@ -7,14 +7,24 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
+    <div class="field password-wrapper">
       <%= f.label :password, "パスワード", class: "form-label" %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <div class="password-input-container">
+        <%= f.password_field :password, autocomplete: "new-password", id: "user_password", class: "password-input" %>
+        <span class="toggle-password-visibility" data-target="user_password">
+          <i class="fa-solid fa-eye-slash" style="color: #afafaf;"></i>
+        </span>
+      </div>
     </div>
-
-    <div class="field">
+    
+    <div class="field password-wrapper">
       <%= f.label :password_confirmation, "パスワードを再入力", class: "form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <div class="password-input-container">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", id: "user_password_confirmation", class: "password-input" %>
+        <span class="toggle-password-visibility" data-target="user_password_confirmation">
+          <i class="fa-solid fa-eye-slash" style="color: #afafaf;"></i>
+        </span>
+      </div>
     </div>
 
     <%= render "devise/shared/error_messages", resource: resource %>

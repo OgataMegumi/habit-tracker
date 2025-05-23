@@ -59,19 +59,35 @@
           </div>
         </div>
         <div class="completed_tasks_list">
-        <h4>
-          達成したタスク
-          <span class="tooltip-icon">
-            <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
-            <span class="tooltip-text">
-              ここに表示されているのは目標を達成したタスクです<br>
-              <%= @completed_tasks.any? ? "がんばったね！" : "これからがんばろう！" %>
+          <div class="completed-tasks-header">
+            <h4>
+              目標を達成したタスク
+            </h4>
+            <button id="toggle-completed-tasks-btn">
+              <% if current_user.show_completed_tasks %>
+                <i class="fa-solid fa-toggle-on fa-lg" style="color: #afafaf;"></i>
+              <% else %>
+                <i class="fa-solid fa-toggle-off fa-lg" style="color: #afafaf;"></i>
+              <% end %>
+            </button>
+            <span class="tooltip-icon">
+              <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+              <span class="tooltip-text">
+                最後まで目標を達成したタスクが表示されます<br>
+                <%= @completed_tasks.any? ? "がんばったね！" : "これからがんばろう！" %>
+              </span>
             </span>
-          </span>
-        </h4>
-          <div class="task-list">
+          </div>
+
+          <div class="task-list" id="completed-task-list" data-original-display="grid" style="<%= current_user.show_completed_tasks ? '' : 'display: none;' %>">
             <% @completed_tasks.each do |task| %>
               <div class="task-card completed">
+                <div class="dropdown">
+                  <button class="dropdown-toggle" onclick="event.stopPropagation()">⋯</button>
+                  <div class="dropdown-menu" hidden>
+                    <%= link_to '削除', task_path(task), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %>
+                  </div>
+                </div>
                 <div class="progress-circle">
                   <div class="fill" style="background: conic-gradient(<%= task.color_code %> <%= task.completion_rate %>%, #ffffff <%= task.completion_rate %>%, #ffffff 100%);"></div>
                   <% image_file = task_category_image_map[task.category] || "default.png" %>
@@ -99,17 +115,9 @@
       </h4>
       <div class="calender-container">
         <table class="calendar">
-          <thead>
-            <tr>
-              <th>日</th>
-              <th>月</th>
-              <th>火</th>
-              <th>水</th>
-              <th>木</th>
-              <th>金</th>
-              <th>土</th>
-            </tr>
-          </thead>
+          <div class="calendar-month-title">
+            <%= @current_month %>月
+          </div>
           <tbody>
           <% @current_month_dates.each_slice(7) do |week| %>
             <tr>
@@ -144,7 +152,7 @@
         GRAPH
         <span class="tooltip-icon">
           <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
-          <span class="tooltip-text">すべての目標のうち、いくつの目標に取り組んだかを<br>確認できます</span>
+          <span class="tooltip-text">目標の何％が実行できたかを確認できます</span>
         </span>
       </h4>
       <div class="graph-container">
@@ -162,7 +170,14 @@
 
 <div id="newTaskModal" class="modal" style="display: none;">
   <div class="modal-content">
-    <h1> Add New Task...</h1>
+    <div class="modal-header">
+      <div class="back-button">
+        <button id="closeNewTaskModal" class="close-modal">
+          <i class="fa-solid fa-xmark fa-2x" style="color: #afafaf;"></i>
+        </button>
+      </div>
+    </div>
+    <h1>Add New Task...</h1>
     <div id="newTaskModalBody">
       <%= render 'form', task: Task.new %>
     </div>
@@ -171,8 +186,15 @@
 
 <div id="editTaskModal" class="modal edit-modal" style="display: none;">
   <div class="modal-content">
-    <h1>Edit Task...</h1>
-    <div id="editTaskModalBody">
+    <div class="modal-header">
+      <div class="back-button">
+        <button id="closeEditTaskModal" class="close-modal">
+          <i class="fa-solid fa-xmark fa-2x" style="color: #afafaf;"></i>
+        </button>
+      </div>
     </div>
+    <h1>Edit Task...</h1>
+    <div id="editTaskModalBody"></div>
   </div>
 </div>
+

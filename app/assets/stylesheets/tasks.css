@@ -1,5 +1,4 @@
 html, body {
-  /* height: 100%; */
   background-color: #f7f7f7;
 }
 
@@ -43,8 +42,6 @@ h4 {
   max-height: 100%;
   min-height: 0;
 }
-
-/* ----------TO DO---------- */
 
 .tooltip-icon {
   position: relative;
@@ -245,7 +242,7 @@ h4 {
 .task-card .progress-circle::before {
   content: "";
   position: absolute;
-  width: 100px;  /* 内側の穴の直径 */
+  width: 100px;
   height: 100px;
   background: #fff;
   border-radius: 50%;
@@ -256,15 +253,11 @@ h4 {
   margin-top: 20px;
 }
 
-/* ================================================= */
-
 .right-column {
   display: flex;
   flex-direction: column;
   flex: 1.2;
 }
-
-/* ----------カレンダー---------- */
 
 .calendar-wrapper {
   margin-bottom: 16px
@@ -348,8 +341,6 @@ h4 {
   z-index: 1;
 }
 
-/* ----------グラフ---------- */
-
 .graph-container {
   margin-top: 1rem;
   padding: 16px;
@@ -357,8 +348,6 @@ h4 {
   border-radius: 20px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
-
-/* ----------タスク登録・編集---------- */
 
 .task-form {
   margin: 0 auto;
@@ -425,9 +414,6 @@ h4 {
   background-color: #c8fdb8;
 }
 
-
-/* =================モーダル==================*/
-
 .modal {
   position: fixed;
   top: 0;
@@ -447,7 +433,7 @@ h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -545,4 +531,53 @@ h4 {
 
 .input-form.error {
   border: 1px solid #ff272e;
+}
+
+.calendar-month-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.calender-cell {
+  cursor: pointer;
+}
+
+.calender-cell:hover {
+  background-color: #dbdbdb4c;
+}
+
+.completed-tasks-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.completed-tasks-header h4 {
+  margin: 0;
+}
+
+.back-button {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.close-modal {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
