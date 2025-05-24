@@ -11,7 +11,7 @@ RSpec.describe TaskProgressCalculator do
         result = calculator.call
 
         expect(result.keys.size).to eq 14
-        expect(result.values.uniq).to eq [0]
+        expect(result.values.uniq).to eq [ 0 ]
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe TaskProgressCalculator do
         task = create(:task, user: user, start_date: Date.today - 5, end_date: Date.today + 5)
         log = create(:task_log, task: task, executed_on: Date.today)
 
-        calculator = TaskProgressCalculator.new([log])
+        calculator = TaskProgressCalculator.new([ log ])
         result = calculator.call
 
         expect(result[Date.today]).to eq 100.0
@@ -32,7 +32,7 @@ RSpec.describe TaskProgressCalculator do
         create_list(:task, 3, user: user, start_date: Date.today - 5, end_date: Date.today + 5)
         log = create(:task_log, task: Task.first, executed_on: Date.today)
 
-        calculator = TaskProgressCalculator.new([log])
+        calculator = TaskProgressCalculator.new([ log ])
         result = calculator.call
 
         expect(result[Date.today]).to eq 33.3
@@ -44,7 +44,7 @@ RSpec.describe TaskProgressCalculator do
         task = create(:task, user: user, start_date: Date.today - 10, end_date: Date.today - 5)
         log = create(:task_log, task: task, executed_on: Date.today)
 
-        calculator = TaskProgressCalculator.new([log])
+        calculator = TaskProgressCalculator.new([ log ])
         result = calculator.call
 
         expect(result[Date.today]).to eq 0
