@@ -1,11 +1,14 @@
 FactoryBot.define do
   factory :task do
-    association :user
+    user
+    title { "テストタスク" }
+    description { "詳細" }
+    message { "メッセージ" }
     start_date { Date.today }
-    end_date { Date.today + 10 }
-    frequency_number { Task::FREQUENCY_RANGE.sample }
-    frequency_unit { FREQUENCY_UNITS_LIST.sample }
-    category { Task::CATEGORIES.sample }
-    color { COLORS.sample }
+    end_date { Date.today + 4 }
+    frequency_number { 1 }
+    frequency_unit { TaskContents::FREQUENCY_UNITS_LIST.first }
+    category { TaskContents::CATEGORIES_GROUPS.values.flatten.first }
+    color    { TaskContents::COLORS.first }
   end
 end

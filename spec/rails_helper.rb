@@ -34,6 +34,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
@@ -71,4 +72,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Warden::Test::Helpers, type: :request
+
+  config.before(type: :request) do
+    Warden.test_mode!
+  end
+
+  config.after(type: :request) do
+    Warden.test_reset!
+  end
 end

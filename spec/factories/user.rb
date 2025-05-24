@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { "test@example.com" }
+    email { "user#{SecureRandom.hex(4)}@example.com" }
     password { "P@ssw0rd" }
   end
 end
