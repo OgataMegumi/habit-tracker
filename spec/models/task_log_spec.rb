@@ -13,7 +13,7 @@ RSpec.describe TaskLog, type: :model do
 
       logs_in_range = TaskLog.where(task_id: task.id, executed_on: task.start_date..task.end_date).pluck(:executed_on)
       puts "logs_in_range: #{logs_in_range}"
-    
+
       result = TaskLog.done_days(task)
       puts "done_days result: #{result}"
 
@@ -60,36 +60,36 @@ RSpec.describe TaskLog, type: :model do
 
   describe '.calculate_chart_data' do
     let(:date_range) { (13.days.ago.to_date..Date.today).to_a }
-  
+
     context 'ユーザーに複数のタスクがあり、一部のタスクログがある場合' do
       before do
         create_list(:task, 3, user: user, start_date: Date.today - 10, end_date: Date.today + 10)
         create(:task_log, task: Task.where(user: user).first, user: user, executed_on: Date.today)
       end
-  
+
       it '13日前から今日までの日付ごとの進捗率を返す' do
         chart_data = TaskLog.calculate_chart_data(user)
-  
+
         expect(chart_data.size).to eq date_range.size
 
         today_label = Date.today.strftime("%m/%d")
         today_data = chart_data.find { |date, _| date == today_label }
-  
+
         expect(today_data).not_to be_nil
         expect(today_data[1]).to eq 33
       end
     end
-  
+
     context 'ユーザーに割り当てられたタスクがない場合' do
       before do
         other_user = create(:user)
         create(:task, user: other_user, start_date: Date.today - 1, end_date: Date.today + 1)
       end
-  
+
       it 'すべての日付で進捗率は0%' do
         chart_data = TaskLog.calculate_chart_data(user)
         expect(chart_data.all? { |_, percent| percent.zero? }).to be true
       end
     end
-  end  
+  end
 end

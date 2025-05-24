@@ -30,23 +30,23 @@ class TaskLog < ApplicationRecord
     start_date = 13.days.ago.to_date
     end_date = Date.today
     date_range = (start_date..end_date).to_a
-  
+
     progress_data = TaskLog.where(user_id: user.id, executed_on: start_date..end_date)
                            .group(:executed_on)
                            .count
-  
+
     tasks = Task.where(user: user)
     assigned_tasks_by_date = date_range.each_with_object({}) do |date, hash|
       hash[date] = tasks.where("start_date <= ? AND end_date >= ?", date, date).count
     end
-  
+
     date_range.map do |date|
       done = progress_data[date] || 0
       assigned_tasks = assigned_tasks_by_date[date]
-  
+
       percentage = assigned_tasks.positive? ? ((done.to_f / assigned_tasks) * 100).round : 0
-  
-      [date.strftime("%m/%d"), percentage]
+
+      [ date.strftime("%m/%d"), percentage ]
     end
   end
 end
