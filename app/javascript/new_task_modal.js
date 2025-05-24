@@ -1,3 +1,5 @@
+import { setupCharCount } from "text_limit_count";
+
 document.addEventListener('DOMContentLoaded', () => {
   const newTaskModal = document.getElementById('newTaskModal');
   const openNewTaskBtn = document.getElementById('openNewTaskModal');
@@ -6,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (openNewTaskBtn) {
     openNewTaskBtn.addEventListener('click', () => {
       newTaskModal.style.display = 'flex';
+      
+      setupCharCount();
     });
   }
 
