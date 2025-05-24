@@ -1,4 +1,5 @@
 import { initializeColorSelect } from "color_select";
+import { setupCharCount } from "text_limit_count";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".edit-task-btn").forEach(btn => {
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const modalBody = document.querySelector("#editTaskModalBody");
           initializeColorSelect(modalBody);
+            
+          setupCharCount();
         });
     });
   });
