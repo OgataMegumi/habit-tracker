@@ -516,12 +516,14 @@ h4 {
   font-weight: bold;
 }
 
-#modal-errors ul {
-  color: #ff272e;
+#new-modal-errors ul,
+#edit-modal-errors ul {
+  color: #fc6e72;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 11px;
   list-style: none;
   padding: 0;
+  font-weight: bold;
 }
 
 .required-mark {

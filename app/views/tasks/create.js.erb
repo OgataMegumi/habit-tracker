@@ -1,5 +1,5 @@
 <% if @task.errors.any? %>
-  document.getElementById('modal-errors').innerHTML = "<%= j render partial: 'shared/error_messages', locals: { object: @task } %>";
+  document.getElementById('new-modal-errors').innerHTML = "<%= j render partial: 'shared/error_messages', locals: { object: @task } %>";
 <% else %>
   document.getElementById('newTaskModal').style.display = 'none';
   window.location.href = "<%= tasks_path %>";
