@@ -74,17 +74,17 @@ RSpec.describe TasksController, type: :request do
         patch task_path(task),
           params: { task: { title: 'Updated Title' } },
           headers: { 'ACCEPT' => 'text/javascript' }
-      
+
         expect(response).to have_http_status(:ok)
         expect(task.reload.title).to eq('Updated Title')
         expect(response.media_type).to eq('text/javascript')
       end
-    
+
       it 'HTML形式でリダイレクトする' do
         patch task_path(task),
           params: { task: { title: 'Updated Title 2' } },
           headers: { 'ACCEPT' => 'text/html' }
-    
+
         expect(response).to redirect_to(tasks_path)
         expect(task.reload.title).to eq('Updated Title 2')
       end
@@ -101,5 +101,3 @@ RSpec.describe TasksController, type: :request do
     end
   end
 end
-
-
