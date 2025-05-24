@@ -10,7 +10,7 @@ export function setupCharCount() {
     new_task_message: { counterId: "new_message_char_count", max: 50 },
     edit_task_title: { counterId: "edit_title_char_count", max: 15 },
     edit_task_description: { counterId: "edit_description_char_count", max: 50 },
-    edit_task_message: { counterId: "edit_task_message", max: 50 }
+    edit_task_message: { counterId: "edit_message_char_count", max: 50 }
   };
 
   modalBodies.forEach((modalBody) => {
