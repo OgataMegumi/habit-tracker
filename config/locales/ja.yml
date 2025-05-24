@@ -57,6 +57,8 @@ ja:
     attributes:
       task:
         title: 目標
+        end_date: 終了日
+        start_date: 開始日
     errors:
       messages:
         record_invalid: "無効なレコードです"

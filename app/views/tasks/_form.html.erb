@@ -105,7 +105,11 @@
         </div>
       </div>
 
-      <div id="modal-errors"></div>
+      <% if task.new_record? %>
+        <div id="new-modal-errors"></div>
+      <% else %>
+        <div id="edit-modal-errors"></div>
+      <% end %>
 
       <div class="submit-button"><%= f.submit "保存" %></div>
     </div>
