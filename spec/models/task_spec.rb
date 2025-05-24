@@ -30,40 +30,40 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  # describe '#scheduled_periods' do
-  #   it '期間日数が計算される' do
-  #     task = build(:task, start_date: Date.today, end_date: Date.today + 2)
-  #     expect(task.scheduled_periods).to eq 3
-  #   end
-  # end
+  describe '#scheduled_periods' do
+    it '期間日数が計算される' do
+      task = build(:task, start_date: Date.today, end_date: Date.today + 2)
+      expect(task.scheduled_periods).to eq 3
+    end
+  end
 
-  # describe '#completion_rate' do
-  #   it '完了率が0%のとき' do
-  #     task = create(:task)
-  #     expect(task.completion_rate).to eq 0
-  #   end
+  describe '#completion_rate' do
+    it '完了率が0%のとき' do
+      task = create(:task, start_date: Date.today, end_date: Date.today)
+      expect(task.completion_rate).to eq 0
+    end
 
-  #   it '完了率が100%のとき' do
-  #     task = create(:task, start_date: Date.today, end_date: Date.today)
-  #     create(:task_log, task:, executed_on: Date.today, status: 'done')
-  #     expect(task.completion_rate).to eq 100.0
-  #   end
-  # end
+    it '完了率が100%のとき' do
+      task = create(:task, start_date: Date.today, end_date: Date.today)
+      create(:task_log, task: task, executed_on: Date.today)
+      expect(task.completion_rate).to eq 100.0
+    end
+  end
 
-  # describe '.dates_in_current_month' do
-  #   it '今月の日付の配列が返る' do
-  #     dates = Task.dates_in_current_month
-  #     expect(dates).to all(be_a(Date))
-  #     expect(dates.first.day).to eq 1
-  #     expect(dates.last.day).to eq Date.today.end_of_month.day
-  #   end
-  # end
+  describe '.dates_in_current_month' do
+    it '今月の日付の配列が返る' do
+      dates = Task.dates_in_current_month
+      expect(dates).to all(be_a(Date))
+      expect(dates.first.day).to eq 1
+      expect(dates.last.day).to eq Date.today.end_of_month.day
+    end
+  end
 
-  # describe '#executed_today?' do
-  #   it '今日の実行ログがあればtrueを返す' do
-  #     task = create(:task)
-  #     create(:task_log, task:, executed_on: Date.today)
-  #     expect(task.executed_today?).to be true
-  #   end
-  # end
+  describe '#executed_today?' do
+    it '今日の実行ログがあればtrueを返す' do
+      task = create(:task)
+      create(:task_log, task:, executed_on: Date.today)
+      expect(task.executed_today?).to be true
+    end
+  end
 end
