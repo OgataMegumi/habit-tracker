@@ -11,6 +11,13 @@
   margin-bottom: 20px;
 }
 
+.task-form {
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 25px;
+}
+
 #color_palette {
   display: flex;
   gap: 8px;
@@ -93,4 +100,23 @@ textarea {
 
 .task-form label {
   font-size: 12px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .form-two-column {
+    display: block;
+  }
+
+  .task-form {
+    padding: 0.9rem;
+  }
+
+  .input-form {
+    width: 92%;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
 }

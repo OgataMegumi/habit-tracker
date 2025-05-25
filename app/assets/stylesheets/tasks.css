@@ -91,11 +91,11 @@ h4 {
 }
 
 .task-list {
-  display: grid;
+display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1rem;
-}
+  }
 
 .task-card {
   background: #fff;
@@ -260,7 +260,7 @@ h4 {
 }
 
 .calendar-wrapper {
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }
 
 .calender-container {
@@ -349,13 +349,6 @@ h4 {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
 }
 
-.task-form {
-  margin: 0 auto;
-  padding: 2rem;
-  background: #f9f9f9;
-  border-radius: 25px;
-}
-
 .task-form .form-group {
   margin-bottom: 1rem;
 }
@@ -421,19 +414,6 @@ h4 {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.328);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.edit-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -582,4 +562,145 @@ h4 {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .date-header {
+    padding-left: 0px;
+  }
+
+  .search-form {
+    margin-left: 0px;
+  }
+
+  .task-list-wrapper {
+    padding: 0px;
+  }
+
+  .page-layout {
+    display: block;
+    height: auto;
+    padding: 0 5px 5px 5px;
+  }
+
+  .task-search-button {
+    width: 60px;
+  }
+
+  .all-tasks-btn {
+    width: 77px;
+  }
+
+  .task-card {
+    width: 125px;
+  }
+
+  .task-card .progress-circle {
+    width: 100px;
+    height: 100px;
+  }
+  .task-card .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .date-header {
+    display: block;
+  }
+
+  .scrollable-area {
+    flex: initial;
+    overflow-y: visible;
+    max-height: none;
+    min-height: auto;
+  }
+
+  .task-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .task-card .progress-circle::before {
+    width: 70px;
+    height: 70px;
+  }
+
+  .task-card .progress-circle {
+    margin-bottom: 0rem;
+  }
+
+  .new-task-card {
+    min-width: 161px;
+  }
+
+  .calendar td .task-background {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 5px;
+    padding-left: 5px;
+  }
+
+  .calendar td {
+    padding: 4px;
+    width: 14.28%;
+    min-width: 0px;
+    border-radius: 8px;
+  }
+
+  .calendar {
+    border-spacing: 4px;
+  }
+
+  .modal {
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .submit-button {
+    padding-left: 0px;
+    padding-top: 1rem;
+  }
+
+  .completed-tasks-header {
+    display: block;
+  }
+
+  .calendar-wrapper {
+    margin-top: 1rem;
+  }
+
+  .calender-container {
+    padding: 10px;
+  }
+
+  .calendar td .task-background span {
+    margin-right: 2px;
+  }
+
+  .calendar td .task-background {
+    margin-left: 11px;
+  }
+
+  .tooltip-text {
+    width: 210px;
+    font-size: 8px;
+  }
+
+  .task-form .form-group {
+    margin-bottom: 0rem;
+  }
+
+  .add-padding-bottom {
+    padding-bottom: 1rem;
+  }
 }
