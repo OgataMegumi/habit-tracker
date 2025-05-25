@@ -27,7 +27,7 @@
         <div id="<%= task.new_record? ? "new_description_char_count" : "edit_description_char_count" %>" class="char-count"><%= task.description.to_s.length %>/50</div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group add-padding-bottom">
         <%= f.label :category,"カテゴリー"  %><br>
         <%= f.select :category,
           Task::CATEGORIES.map { |key| [I18n.t("task.categories.#{key}"), key] },
@@ -57,7 +57,7 @@
 
       <% selected_date = task.start_date || Date.today %>
 
-      <div class="form-group">
+      <div class="form-group add-padding-bottom">
         <%= f.label :start_date, "開始日", for: nil %><br>
       
         <select name="task[start_date(1i)]" class="form-select">
@@ -81,7 +81,7 @@
 
       <% selected_end_date = task.end_date || Date.today %>
 
-      <div class="form-group">
+      <div class="form-group add-padding-bottom">
         <%= f.label :end_date, "完了日", for: nil %><br>
 
         <select name="task[end_date(1i)]" class="form-select">
@@ -104,7 +104,7 @@
       </div>
   
       <% selected_color = (task.color.presence || "orange").to_s.strip %>
-      <div class="form-group">
+      <div class="form-group add-padding-bottom">
         <%= f.label :color, "テーマカラー", for: nil %><br>
         <%= f.hidden_field :color, id: "task_color", value: selected_color %>
         <div id="color_palette">

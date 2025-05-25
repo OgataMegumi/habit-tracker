@@ -34,7 +34,7 @@
       <%= link_to "HOME", tasks_path(current_user), class: "btn home-btn" %>
       
       <% unless controller_name == "home" && action_name == "index" %>
-        <%= link_to "このポートフォリオについて", root_path, class: "btn about-app-btn" %>
+        <%= link_to "ポートフォリオについて", root_path, class: "btn about-app-btn" %>
       <% end %>
 
       <% unless devise_controller? && hide_header_for_devise_page? %>
