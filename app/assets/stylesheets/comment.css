@@ -4,6 +4,11 @@
   height: 100vh;
 }
 
+.comment-container {
+  max-width: 1000px; /* ← お好みで調整 */
+  margin: 0 auto;
+}
+
 .comment-wrapper {
  padding: 30px;
 }
@@ -15,9 +20,9 @@
 .comments-list {
   position: relative;
   margin: 30px 0;
-  padding: 1rem;
+  padding: 30px;
   border: 0px solid #ccc;
-  border-radius: 1rem;
+  border-radius: 30px;
   background-color: #ffffff;
 }
 
@@ -58,4 +63,31 @@
 .comment-submit-button {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.reply {
+  background-color: #f9f9f9;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.comment-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.comment-form {
+  margin-top: 1rem;
+  width: 70%;
+  height: 300px;;
+}
+
+.no-decolationed-link{
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-decolationed-link:hover{
+  text-decoration: none;
 }

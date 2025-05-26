@@ -7,13 +7,13 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
-      redirect_to comments_path
+      redirect_to comments_path, notice: "コメントを投稿しました。"
     else
       render :new
     end
@@ -28,6 +28,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :parent_id)
   end
 end
