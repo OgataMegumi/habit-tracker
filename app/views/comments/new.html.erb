@@ -1,15 +1,18 @@
-<h2>コメント投稿</h2>
+<div class="comment-wrapper">
+  <h2 class="main-title">投稿</h2>
+  <hr>
 
-<%= form_with model: @comment, url: comments_path, local: true do |f| %>
-  <div>
-    <%= f.label :content, 'コメントを入力' %><br>
-    <%= f.text_area :content, rows: 5 %>
+  <%= form_with model: @comment, url: comments_path, local: true do |f| %>
+    <%= f.text_area :content, rows: 5, class: "form-textarea"  %>
+    <%= f.submit '投稿', class: "comment-submit-button" %>
+  <% end %>
+
+  <% if notice %>
+    <p style="color: green;"><%= notice %></p>
+  <% end %>
+
+  <div style="margin-top: 1rem;">
+    <i class="fa-solid fa-chevron-left" style="color: #9e9e9e;"></i>
+    <%= link_to 'もどる', comments_path %>
   </div>
-  <%= f.submit '投稿する' %>
-<% end %>
-
-<% if notice %>
-  <p style="color: green;"><%= notice %></p>
-<% end %>
-
-<%= link_to 'コメント一覧', comments_path %>
+</div>

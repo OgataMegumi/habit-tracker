@@ -63,7 +63,7 @@
   border: 1.5px solid #dedede;
 }
 
-textarea.form-textarea {
+.form-textarea {
   width: 100%;
   min-height: 100px;
   padding: 12px;

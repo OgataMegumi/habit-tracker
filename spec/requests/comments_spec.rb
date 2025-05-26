@@ -8,23 +8,23 @@ RSpec.describe "Comments", type: :request do
     login_as(user, scope: :user)
   end
 
-  describe "コメント一覧ページが表示されること" do
-    it "returns http success" do
+  describe "GET /comments" do
+    it "コメント一覧ページが表示されること" do
       get comments_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "新規コメント投稿フォームが表示されること" do
-    it "renders the new template" do
+  describe "GET /comments/new" do
+    it "新規コメント投稿フォームが表示されること" do
       get new_comment_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "正しいコメントが送られたら保存され、ページ遷移すること" do
-    context "with valid params" do
-      it "creates a new comment and redirects to new_comment_path" do
+  describe "POST /comments" do
+    context "正しいコメントが送信されたとき" do
+      it "保存され、ページ遷移すること" do
         expect {
           post comments_path, params: { comment: { content: "テストコメント" } }
         }.to change(Comment, :count).by(1)
@@ -33,8 +33,8 @@ RSpec.describe "Comments", type: :request do
       end
     end
   
-    context "空のコメントは保存されず、フォームが再表示されること" do
-      it "does not create a comment and renders :new" do
+    context "空のコメントが送信されたとき" do
+      it "空のコメントは保存されず、フォームが再表示されること" do
         expect {
           post comments_path, params: { comment: { content: "" } }
         }.not_to change(Comment, :count)
@@ -45,8 +45,8 @@ RSpec.describe "Comments", type: :request do
     end
   end  
 
-  describe "コメントを削除したら、正しく削除されて一覧ページに戻ること" do
-    it "deletes the comment and redirects" do
+  describe "DELETE /comments/:id" do
+    it "コメントを削除したら、正しく削除されて一覧ページに戻ること" do
       expect {
         delete comment_path(comment)
       }.to change(Comment, :count).by(-1)
