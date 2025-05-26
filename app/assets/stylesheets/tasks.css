@@ -259,10 +259,6 @@ display: grid;
   flex: 1.2;
 }
 
-.calendar-wrapper {
-  margin-bottom: 16px;
-}
-
 .calender-container {
   margin-top: 1rem;
   background-color: #fff;
@@ -677,6 +673,9 @@ display: grid;
 
   .calendar-wrapper {
     margin-top: 1rem;
+  }
+  .calendar-wrapper {
+    margin-bottom: 16px;
   }
 
   .calender-container {

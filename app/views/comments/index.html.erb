@@ -1,0 +1,17 @@
+<h2>みんなのコメント</h2>
+
+<%= link_to 'コメントを書く', new_comment_path %>
+
+<hr>
+
+<% @comments.each do |comment| %>
+  <div style="margin-bottom: 20px;">
+    <strong><%= comment.user.email %></strong>
+    <p><%= comment.content %></p>
+    <small><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+
+    <% if comment.user == current_user %>
+      <%= button_to '削除', comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% end %>
+  </div>
+<% end %>

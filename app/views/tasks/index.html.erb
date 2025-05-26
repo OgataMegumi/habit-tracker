@@ -160,6 +160,21 @@
         <%= column_chart(@chart_data, height: "200px", stacked: true) %>
       </div>
     </div>
+
+    <%= link_to 'コメント一覧', comments_path %>
+        <div class="graph-wrapper">
+      <h4>
+        GRAPH
+        <span class="tooltip-icon">
+          <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+          <span class="tooltip-text">目標の何％が実行できたかを確認できます</span>
+        </span>
+      </h4>
+      <div class="graph-container" style="position: relative;">
+        <span style="position: absolute; top: 20px; font-size: 9px; padding-left: 25px;">％</span>
+        <%= column_chart(@chart_data, height: "200px", stacked: true) %>
+      </div>
+    </div>
   </div>
 </div>
 

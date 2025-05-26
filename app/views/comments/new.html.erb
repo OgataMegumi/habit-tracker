@@ -1,0 +1,15 @@
+<h2>コメント投稿</h2>
+
+<%= form_with model: @comment, url: comments_path, local: true do |f| %>
+  <div>
+    <%= f.label :content, 'コメントを入力' %><br>
+    <%= f.text_area :content, rows: 5 %>
+  </div>
+  <%= f.submit '投稿する' %>
+<% end %>
+
+<% if notice %>
+  <p style="color: green;"><%= notice %></p>
+<% end %>
+
+<%= link_to 'コメント一覧', comments_path %>
