@@ -94,12 +94,9 @@ class TasksController < ApplicationController
       end
     end
   end
-<<<<<<< Updated upstream
-=======
 
   def dates_in_current_month
     today = Date.today
     today.beginning_of_month..today.end_of_month
   end
->>>>>>> Stashed changes
 end
