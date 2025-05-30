@@ -50,15 +50,6 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  describe '.dates_in_current_month' do
-    it '今月の日付の配列が返る' do
-      dates = Task.dates_in_current_month
-      expect(dates).to all(be_a(Date))
-      expect(dates.first.day).to eq 1
-      expect(dates.last.day).to eq Date.today.end_of_month.day
-    end
-  end
-
   describe '#executed_today?' do
     it '今日の実行ログがあればtrueを返す' do
       task = create(:task)

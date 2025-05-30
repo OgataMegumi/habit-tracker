@@ -43,6 +43,14 @@ h4 {
   min-height: 0;
 }
 
+.content-wrapper {
+  margin-bottom: 1rem;
+}
+
+.top-merging {
+  margin-top: 1rem;
+}
+
 .tooltip-icon {
   position: relative;
   display: inline-block;
@@ -138,7 +146,7 @@ display: grid;
 }
 
 .new-task-card:hover {
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); /* ← 全方向に影を出す */
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
   transition: all 0.2s ease;
   cursor: pointer;
@@ -257,10 +265,6 @@ display: grid;
   display: flex;
   flex-direction: column;
   flex: 1.2;
-}
-
-.calendar-wrapper {
-  margin-bottom: 16px;
 }
 
 .calender-container {
@@ -564,6 +568,45 @@ display: grid;
   cursor: pointer;
 }
 
+.chat-container {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;   
+  margin-top: 1rem;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+}
+
+.chat-container-link {
+  color: inherit;
+}
+
+.chat-container-link:hover {
+  text-decoration: none;
+}
+
+.chat-container:hover {
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sub-image {
+  width: 50px;
+  height: auto;
+}
+
+.link-to-chat {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 600px) {
   .date-header {
     padding-left: 0px;
@@ -675,8 +718,8 @@ display: grid;
     display: block;
   }
 
-  .calendar-wrapper {
-    margin-top: 1rem;
+  .content-wrapper {
+    margin-bottom: 1rem;
   }
 
   .calender-container {
