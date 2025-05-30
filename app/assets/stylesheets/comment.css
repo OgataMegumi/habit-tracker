@@ -5,7 +5,7 @@
 }
 
 .comment-container {
-  max-width: 1000px; /* ← お好みで調整 */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -70,6 +70,7 @@
   padding: 0.75rem;
   border-radius: 0.5rem;
   margin-top: 0.5rem;
+  margin-left: 2rem;
 }
 
 .comment-header {
@@ -90,4 +91,19 @@
 
 .no-decolationed-link:hover{
   text-decoration: none;
+}
+
+.no-comment-text {
+  color: #999;
+  font-style: italic;
+}
+
+@media screen and (max-width: 600px) {
+  .comment-wrapper {
+    padding: 0 20px;
+  }
+
+  .reply {
+    margin-left: 1rem;
+  }
 }

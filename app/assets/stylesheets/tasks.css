@@ -676,7 +676,7 @@ display: grid;
   }
 
   .new-task-card {
-    min-width: 161px;
+    min-width: 155px;
   }
 
   .calendar td .task-background {

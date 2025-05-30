@@ -4,7 +4,7 @@
     <hr>
 
     <% if @comments.empty? %>
-      <p style="color: #999; font-style: italic;">no comments...</p>
+      <p class="no-comment-text">no comments...</p>
     <% else %>
       <% @comments.each do |comment| %>
         <div class="comments-list">
@@ -25,7 +25,7 @@
           <p><%= comment.content %></p>
 
           <% comment.replies.each do |reply| %>
-            <div class="reply" style="margin-left: 2rem;">
+            <div class="reply">
               <strong><%= reply.user.email %></strong>
               <p><%= reply.content %></p>
             </div>
