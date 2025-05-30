@@ -105,7 +105,7 @@
   </div>
 
   <div class="right-column">
-    <div class="calendar-wrapper">
+    <div class="content-wrapper top-merging ">
       <h4>
         CALENDAR
         <span class="tooltip-icon">
@@ -147,7 +147,7 @@
       </div>
     </div>
 
-    <div class="graph-wrapper">
+    <div class="content-wrapper">
       <h4>
         GRAPH
         <span class="tooltip-icon">
@@ -159,6 +159,24 @@
         <span style="position: absolute; top: 20px; font-size: 9px; padding-left: 25px;">％</span>
         <%= column_chart(@chart_data, height: "200px", stacked: true) %>
       </div>
+    </div>
+
+
+    <div class="content-wrapper">
+      <h4>
+        Community
+        <span class="tooltip-icon">
+          <%= image_tag("info.png", alt: "説明", class: "info-icon") %>
+          <span class="tooltip-text">コメントを通じて他のユーザーと交流できます</span>
+        </span>
+      </h4>
+      <%= link_to comments_path, class: "chat-container-link" do %>
+        <div class="chat-container">
+          <%= image_tag("robot.png", class: "sub-image") %>   
+          <span class="link-to-chat">Go to Chat</span>
+          <%= image_tag("cake.png", class: "sub-image") %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

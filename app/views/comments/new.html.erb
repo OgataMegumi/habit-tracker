@@ -1,0 +1,22 @@
+<div class="comment-wrapper">
+  <h2 class="main-title"><%= @comment.parent_id.present? ? '返信を書く' : '投稿' %></h2>
+  <hr>
+
+  <div class="comment-container">
+    <%= form_with model: @comment, url: comments_path, local: true do |f| %>
+      <%= f.hidden_field :parent_id %>
+
+      <%= f.text_area :content, rows: 5, class: "form-textarea comment-form"  %>
+      <%= f.submit '投稿', class: "comment-submit-button" %>
+    <% end %>
+
+    <% if notice %>
+      <p style="color: green;"><%= notice %></p>
+    <% end %>
+
+    <div style="margin-top: 1rem;">
+      <i class="fa-solid fa-chevron-left" style="color: #9e9e9e;"></i>
+      <%= link_to 'BACK', comments_path, class: "no-decolationed-link" %>
+    </div>
+  </div>
+</div>

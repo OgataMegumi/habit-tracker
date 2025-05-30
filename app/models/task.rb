@@ -34,12 +34,6 @@ class Task < ApplicationRecord
     completion_rate == 100
   end
 
-  def self.dates_in_current_month
-    start_date = Date.today.beginning_of_month
-    end_date = Date.today.end_of_month
-    (start_date..end_date).to_a
-  end
-
   def self.current_month
     Date.current.month
   end

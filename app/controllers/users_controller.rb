@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def toggle_completed_tasks
     return head :bad_request if params[:show_completed_tasks].nil?
 
-    value = ActiveModel::Type::Boolean.new.cast(params[:show_completed_tasks])
+    value = params[:show_completed_tasks] == "true"
 
     if current_user.update(show_completed_tasks: value)
       head :ok

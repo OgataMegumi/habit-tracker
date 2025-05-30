@@ -71,7 +71,6 @@ class TasksController < ApplicationController
     end
   end
 
-
   def destroy
     @task.destroy
     redirect_to tasks_path
@@ -93,5 +92,10 @@ class TasksController < ApplicationController
         hash[log.executed_on] += [ task ]
       end
     end
+  end
+
+  def self.dates_in_current_month
+    today = Date.today
+    today.beginning_of_month..today.end_of_month
   end
 end
