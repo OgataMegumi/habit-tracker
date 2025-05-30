@@ -72,7 +72,7 @@ RSpec.describe Comment, type: :model do
         create(:comment, user: user, parent: parent_comment) # reply
 
         results = Comment.root_comments
-        expect(results).to eq([newer_parent, parent_comment])
+        expect(results).to eq([ newer_parent, parent_comment ])
       end
     end
 
