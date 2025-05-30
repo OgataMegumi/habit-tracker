@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @comments = Comment.includes(:user).order(created_at: :desc)
+    @comments = Comment.parents.includes(:user, :replies).order(created_at: :desc)
     @comment = Comment.new
   end
 
@@ -11,16 +11,16 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.comments.build(comment_params)
+    @comment = Comment.build_by_user(current_user, comment_params)
     if @comment.save
-      redirect_to comments_path, notice: "コメントを投稿しました。"
+      redirect_to comments_path
     else
       render :new
     end
   end
 
   def destroy
-    @comment = current_user.comments.find(params[:id])
+    @comment = Comment.find_by_user(current_user, params[:id])
     @comment.destroy
     redirect_to comments_path
   end

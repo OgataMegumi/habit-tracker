@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments, only: [:index, :new, :create, :destroy]
+  resources :comments, only: [ :index, :new, :create, :destroy ]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

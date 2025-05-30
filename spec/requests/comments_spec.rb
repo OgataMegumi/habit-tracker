@@ -28,29 +28,29 @@ RSpec.describe "Comments", type: :request do
         expect {
           post comments_path, params: { comment: { content: "テストコメント" } }
         }.to change(Comment, :count).by(1)
-  
+
         expect(response).to redirect_to(new_comment_path)
       end
     end
-  
+
     context "空のコメントが送信されたとき" do
       it "空のコメントは保存されず、フォームが再表示されること" do
         expect {
           post comments_path, params: { comment: { content: "" } }
         }.not_to change(Comment, :count)
-  
+
         expect(response).to have_http_status(:ok)
         expect(response.body).to include("コメント投稿")
       end
     end
-  end  
+  end
 
   describe "DELETE /comments/:id" do
     it "コメントを削除したら、正しく削除されて一覧ページに戻ること" do
       expect {
         delete comment_path(comment)
       }.to change(Comment, :count).by(-1)
-  
+
       expect(response).to redirect_to(comments_path)
     end
   end

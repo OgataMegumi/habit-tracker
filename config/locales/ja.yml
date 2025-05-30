@@ -62,6 +62,7 @@ ja:
     errors:
       messages:
         record_invalid: "無効なレコードです"
+        blank: "を入力してね"
       models:
         task:
           attributes:

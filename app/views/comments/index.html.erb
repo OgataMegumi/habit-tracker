@@ -3,31 +3,35 @@
     <h2 class="main-title">Comments</h2>
     <hr>
 
-    <% @comments.each do |comment| %>
-      <div class="comments-list">
-        <div class="comment-header">
-          <strong><%= comment.user.email %></strong>
+    <% if @comments.empty? %>
+      <p style="color: #999; font-style: italic;">no comments...</p>
+    <% else %>
+      <% @comments.each do |comment| %>
+        <div class="comments-list">
+          <div class="comment-header">
+            <strong><%= comment.user.email %></strong>
 
-          <%= link_to new_comment_path(parent_id: comment.id), class: "reply-link" do %>
-            <i class="fa-solid fa-reply" style="color: #9e9e9e; margin-right: 4px;"></i>
-          <% end %>
+            <%= link_to new_comment_path(parent_id: comment.id), class: "reply-link" do %>
+              <i class="fa-regular fa-message" style="color: #9e9e9e; margin-right: 4px;"></i>
+            <% end %>
 
-          <% if comment.user == current_user %>
-            <%= button_to comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "icon-button" do %>
-                <i class="fa-solid fa-trash" style="color: #9e9e9e;"></i>
-              <% end %>
+            <% if comment.user == current_user %>
+              <%= button_to comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "icon-button" do %>
+                  <i class="fa-solid fa-trash-can" style="color: #9e9e9e;"></i>
+                <% end %>
+            <% end %>
+          </div>
+
+          <p><%= comment.content %></p>
+
+          <% comment.replies.each do |reply| %>
+            <div class="reply" style="margin-left: 2rem;">
+              <strong><%= reply.user.email %></strong>
+              <p><%= reply.content %></p>
+            </div>
           <% end %>
         </div>
-
-        <p><%= comment.content %></p>
-
-        <% comment.replies.each do |reply| %>
-          <div class="reply" style="margin-left: 2rem;">
-            <strong><%= reply.user.email %></strong>
-            <p><%= reply.content %></p>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
