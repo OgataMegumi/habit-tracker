@@ -4,7 +4,7 @@ RSpec.describe TaskLog, type: :model do
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user, start_date: Date.today - 5, end_date: Date.today + 5) }
 
-  describe '.done_days' do
+  describe '.completed_days' do
     it '期間内のユニークな実行日数をカウントする' do
       create(:task_log, task: task, executed_on: Date.today - 1)
       create(:task_log, task: task, executed_on: Date.today)
@@ -14,10 +14,10 @@ RSpec.describe TaskLog, type: :model do
       logs_in_range = TaskLog.where(task_id: task.id, executed_on: task.start_date..task.end_date).pluck(:executed_on)
       puts "logs_in_range: #{logs_in_range}"
 
-      result = TaskLog.done_days(task)
-      puts "done_days result: #{result}"
+      result = TaskLog.completed_days(task)
+      puts "completed_days result: #{result}"
 
-      expect(TaskLog.done_days(task)).to eq 3
+      expect(TaskLog.completed_days(task)).to eq 3
     end
   end
 

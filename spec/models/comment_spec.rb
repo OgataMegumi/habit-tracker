@@ -11,40 +11,40 @@ RSpec.describe Comment, type: :model do
       end
     end
 
-    context '親コメントとの関連（:parent アソシエーション）' do
+    context ':parent アソシエーション' do
       it '子コメントが親コメントを参照できること（belongs_to）' do
         assoc = Comment.reflect_on_association(:parent)
         expect(assoc.macro).to eq(:belongs_to)
       end
 
-      it '親コメントの参照先が Comment クラスであること（class_name: "Comment")' do
+      it '親コメントの参照先が Comment クラスであること' do
         assoc = Comment.reflect_on_association(:parent)
         expect(assoc.options[:class_name]).to eq('Comment')
       end
 
-      it '親コメントが存在しなくてもコメントを作成できること（optional: true）' do
+      it '親コメントが存在しなくてもコメントを作成できること' do
         assoc = Comment.reflect_on_association(:parent)
         expect(assoc.options[:optional]).to be true
       end
     end
 
-    context '返信コメントとの関連（:replies アソシエーション）' do
-      it '親コメントが複数の返信コメントを持てること（has_many）' do
+    context ':replies アソシエーション' do
+      it '親コメントが複数の返信コメントを持てること' do
         assoc = Comment.reflect_on_association(:replies)
         expect(assoc.macro).to eq(:has_many)
       end
 
-      it '返信コメントのクラスが Comment であること（class_name: "Comment")' do
+      it '返信コメントのクラスが Comment であること' do
         assoc = Comment.reflect_on_association(:replies)
         expect(assoc.options[:class_name]).to eq('Comment')
       end
 
-      it '返信コメントの外部キーが parent_id であること（foreign_key）' do
+      it '返信コメントの外部キーが parent_id であること' do
         assoc = Comment.reflect_on_association(:replies)
         expect(assoc.options[:foreign_key]).to eq('parent_id')
       end
 
-      it '親コメントが削除されると、返信コメントも削除されること（dependent: :destroy）' do
+      it '親コメントが削除されると、返信コメントも削除されること' do
         assoc = Comment.reflect_on_association(:replies)
         expect(assoc.options[:dependent]).to eq(:destroy)
       end
@@ -57,7 +57,7 @@ RSpec.describe Comment, type: :model do
       expect(comment).to be_valid
     end
 
-    it 'content が空の場合は無効であること（エラーメッセージ付き）' do
+    it 'content が空の場合は無効であること' do
       comment = Comment.new(content: '', user: FactoryBot.create(:user))
       expect(comment).not_to be_valid
       expect(comment.errors[:content]).to include("を入力してね")

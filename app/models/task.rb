@@ -21,33 +21,27 @@ class Task < ApplicationRecord
     COLOR_CODES[self.color]
   end
 
-  def scheduled_periods
+  def all_days
     (end_date - start_date).to_i + 1
   end
 
   def completion_rate
-    return 0 if scheduled_periods.zero?
-    (TaskLog.done_days(self).to_f / scheduled_periods * 100).round(1)
+    return 0 if all_days.zero?
+
+    completed_days = TaskLog.completed_days(self)
+    (completed_days.to_f / all_days * 100).round(1)
   end
 
-  def completed?
-    completion_rate == 100
-  end
-
-  def self.current_month
-    Date.current.month
+  def update_completed_status
+    update_column(:completed, completion_rate == 100)
   end
 
   def self.in_progress_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs)
-    tasks = tasks.select { |t| !t.completed? }
-    keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
+    filtered_tasks_for(user, completed: false, keyword: keyword)
   end
 
   def self.completed_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs)
-    tasks = tasks.select(&:completed?)
-    keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
+    filtered_tasks_for(user, completed: true, keyword: keyword)
   end
 
   def executed_today?
@@ -60,5 +54,10 @@ class Task < ApplicationRecord
     if end_date.present? && start_date.present? && end_date < start_date
       errors.add(:end_date, :after_or_equal_to_start_date)
     end
+  end
+
+  def self.filtered_tasks_for(user, completed:, keyword: nil)
+    tasks = user.tasks.includes(:task_logs).where(completed: completed)
+    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
   end
 end

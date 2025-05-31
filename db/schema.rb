@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_26_075303) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_31_003516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_075303) do
     t.string "frequency_unit"
     t.float "frequency_in_days"
     t.integer "user_id", null: false
+    t.boolean "completed", default: false, null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

@@ -4,7 +4,10 @@ class TaskLog < ApplicationRecord
 
   validates :executed_on, presence: true
 
-  def self.done_days(task)
+  after_create  :update_task_completed_status
+  after_update  :update_task_completed_status
+
+  def self.completed_days(task)
     where(task_id: task.id, executed_on: task.start_date..task.end_date)
       .distinct
       .count(:executed_on)
@@ -48,5 +51,11 @@ class TaskLog < ApplicationRecord
 
       [ date.strftime("%m/%d"), percentage ]
     end
+  end
+
+  private
+
+  def update_task_completed_status
+    task.update_completed_status if task.present?
   end
 end
