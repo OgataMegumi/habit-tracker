@@ -39,13 +39,11 @@ class Task < ApplicationRecord
   end
 
   def self.in_progress_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs).where(completed: false)
-    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
+    filtered_tasks_for(user, completed: false, keyword: keyword)
   end
   
   def self.completed_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs).where(completed: true)
-    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
+    filtered_tasks_for(user, completed: true, keyword: keyword)
   end
 
   def executed_today?
@@ -58,5 +56,10 @@ class Task < ApplicationRecord
     if end_date.present? && start_date.present? && end_date < start_date
       errors.add(:end_date, :after_or_equal_to_start_date)
     end
+  end
+
+  def self.filtered_tasks_for(user, completed:, keyword: nil)
+    tasks = user.tasks.includes(:task_logs).where(completed: completed)
+    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
   end
 end
