@@ -43,7 +43,7 @@ class Task < ApplicationRecord
   def self.in_progress_for(user, keyword = nil)
     filtered_tasks_for(user, completed: false, keyword: keyword)
   end
-  
+
   def self.completed_for(user, keyword = nil)
     filtered_tasks_for(user, completed: true, keyword: keyword)
   end
