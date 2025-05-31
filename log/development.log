@@ -18139,3 +18139,60 @@ Completed 200 OK in 144ms (Views: 13.3ms | ActiveRecord: 2.7ms (7 queries, 1 cac
 
 
 >>>>>>> Stashed changes
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8146912425687811020) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+Migrating to AddCompletedToTasks (20250531003516)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "tasks" ADD "completed" boolean DEFAULT FALSE NOT NULL /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250531003516') RETURNING "version" /*application='App'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8146912425687811020) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."id" ASC LIMIT 1000 /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.9ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 2 AND "task_logs"."executed_on" = '2025-05-18' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 4 AND "task_logs"."executed_on" = '2025-05-18' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.1ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 5 AND "task_logs"."executed_on" = '2025-05-18' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 6 AND "task_logs"."executed_on" BETWEEN '2025-05-18' AND '2025-05-24' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 7 AND "task_logs"."executed_on" = '2025-05-19' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 8 AND "task_logs"."executed_on" BETWEEN '2025-05-18' AND '2025-11-18' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 9 AND "task_logs"."executed_on" BETWEEN '2025-05-19' AND '2025-08-19' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 10 AND "task_logs"."executed_on" BETWEEN '2025-05-20' AND '2025-08-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.1ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 11 AND "task_logs"."executed_on" BETWEEN '2025-05-20' AND '2025-08-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 12 AND "task_logs"."executed_on" BETWEEN '2025-05-20' AND '2025-08-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 13 AND "task_logs"."executed_on" = '2025-05-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 15 AND "task_logs"."executed_on" = '2025-05-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 16 AND "task_logs"."executed_on" BETWEEN '2025-05-20' AND '2025-06-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 17 AND "task_logs"."executed_on" = '2025-05-20' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 23 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 25 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 26 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 27 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 28 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 29 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 31 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 32 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 33 AND "task_logs"."executed_on" = '2025-05-21' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 34 AND "task_logs"."executed_on" BETWEEN '2025-05-22' AND '2025-05-25' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 35 AND "task_logs"."executed_on" = '2025-05-22' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 36 AND "task_logs"."executed_on" BETWEEN '2025-05-22' AND '2025-06-22' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 102 AND "task_logs"."executed_on" BETWEEN '2025-05-15' AND '2025-06-10' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 106 AND "task_logs"."executed_on" = '2025-05-25' /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mTask Update (3.0ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = '2025-05-31 00:45:22.748286', "completed" = TRUE WHERE "tasks"."id" = 106 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 109 AND "task_logs"."executed_on" = '2025-05-25' /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mTask Update (0.9ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = '2025-05-31 00:45:22.754495', "completed" = TRUE WHERE "tasks"."id" = 109 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 110 AND "task_logs"."executed_on" BETWEEN '2025-05-10' AND '2025-07-01' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 111 AND "task_logs"."executed_on" BETWEEN '2025-05-14' AND '2025-06-22' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 112 AND "task_logs"."executed_on" = '2025-05-22' /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = '2025-05-31 00:45:22.760409', "completed" = TRUE WHERE "tasks"."id" = 112 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 113 AND "task_logs"."executed_on" BETWEEN '2025-05-22' AND '2025-06-22' /*application='App'*/[0m
+  [1m[36mTaskLog Count (0.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "task_logs"."executed_on") FROM "task_logs" WHERE "task_logs"."task_id" = 114 AND "task_logs"."executed_on" = '2025-05-22' /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[36mTask Update (0.5ms)[0m  [1m[33mUPDATE "tasks" SET "updated_at" = '2025-05-31 00:45:22.764514', "completed" = TRUE WHERE "tasks"."id" = 114 /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m

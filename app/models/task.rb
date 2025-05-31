@@ -30,8 +30,8 @@ class Task < ApplicationRecord
     (TaskLog.done_days(self).to_f / scheduled_periods * 100).round(1)
   end
 
-  def completed?
-    completion_rate == 100
+  def update_completed_status
+    update_column(:completed, completion_rate == 100)
   end
 
   def self.current_month
@@ -39,15 +39,13 @@ class Task < ApplicationRecord
   end
 
   def self.in_progress_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs)
-    tasks = tasks.select { |t| !t.completed? }
-    keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
+    tasks = user.tasks.includes(:task_logs).where(completed: false)
+    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
   end
-
+  
   def self.completed_for(user, keyword = nil)
-    tasks = user.tasks.includes(:task_logs)
-    tasks = tasks.select(&:completed?)
-    keyword.present? ? tasks.select { |t| t.title.include?(keyword) } : tasks
+    tasks = user.tasks.includes(:task_logs).where(completed: true)
+    keyword.present? ? tasks.where("title LIKE ?", "%#{keyword}%") : tasks
   end
 
   def executed_today?
