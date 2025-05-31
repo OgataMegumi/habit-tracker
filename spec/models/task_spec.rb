@@ -30,10 +30,10 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  describe '#scheduled_periods' do
+  describe '#all_days' do
     it '期間日数が計算される' do
       task = build(:task, start_date: Date.today, end_date: Date.today + 2)
-      expect(task.scheduled_periods).to eq 3
+      expect(task.all_days).to eq 3
     end
   end
 

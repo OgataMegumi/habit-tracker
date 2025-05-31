@@ -21,13 +21,15 @@ class Task < ApplicationRecord
     COLOR_CODES[self.color]
   end
 
-  def scheduled_periods
+  def all_days
     (end_date - start_date).to_i + 1
   end
 
   def completion_rate
-    return 0 if scheduled_periods.zero?
-    (TaskLog.done_days(self).to_f / scheduled_periods * 100).round(1)
+    return 0 if all_days.zero?
+
+    completed_days = TaskLog.completed_days(self)
+    (completed_days.to_f / all_days * 100).round(1)
   end
 
   def update_completed_status

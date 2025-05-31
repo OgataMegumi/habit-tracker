@@ -7,7 +7,7 @@ class TaskLog < ApplicationRecord
   after_create  :update_task_completed_status
   after_update  :update_task_completed_status
 
-  def self.done_days(task)
+  def self.completed_days(task)
     where(task_id: task.id, executed_on: task.start_date..task.end_date)
       .distinct
       .count(:executed_on)
