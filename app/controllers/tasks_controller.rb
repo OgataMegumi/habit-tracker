@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     @tasks_on_date = tasks_grouped_by_date(@tasks)
     @random_message = current_user.tasks.pluck(:message).sample
     @current_month_dates = dates_in_current_month
-    @current_month = Task.current_month
+    @current_month = current_month
     @progress_data = TaskLog.calculate_daily_progress(current_user)
     @chart_data = TaskLog.calculate_chart_data(current_user)
   end
@@ -97,5 +97,9 @@ class TasksController < ApplicationController
   def dates_in_current_month
     today = Date.today
     today.beginning_of_month..today.end_of_month
+  end
+
+  def current_month
+    Date.current.month
   end
 end

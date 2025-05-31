@@ -36,10 +36,6 @@ class Task < ApplicationRecord
     update_column(:completed, completion_rate == 100)
   end
 
-  def self.current_month
-    Date.current.month
-  end
-
   def self.in_progress_for(user, keyword = nil)
     filtered_tasks_for(user, completed: false, keyword: keyword)
   end

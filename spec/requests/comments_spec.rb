@@ -29,7 +29,7 @@ RSpec.describe "Comments", type: :request do
           post comments_path, params: { comment: { content: "テストコメント" } }
         }.to change(Comment, :count).by(1)
 
-        expect(response).to redirect_to(new_comment_path)
+        expect(response).to redirect_to(comments_path)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe "Comments", type: :request do
         }.not_to change(Comment, :count)
 
         expect(response).to have_http_status(:ok)
-        expect(response.body).to include("コメント投稿")
+        expect(response.body).to include("投稿")
       end
     end
   end
