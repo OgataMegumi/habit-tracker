@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   devise_for :users
 
-  resource :user do
+  resources :users do
     patch :toggle_completed_tasks
   end
 

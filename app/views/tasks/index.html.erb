@@ -63,6 +63,7 @@
             <h4>
               目標を達成したタスク
             </h4>
+            <meta name="current-user-id" content="<%= current_user.id %>">
             <button id="toggle-completed-tasks-btn">
               <% if current_user.show_completed_tasks %>
                 <i class="fa-solid fa-toggle-on fa-lg" style="color: #afafaf;"></i>

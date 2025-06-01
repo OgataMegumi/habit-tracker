@@ -84,18 +84,22 @@
   height: 300px;;
 }
 
-.no-decolationed-link{
+.no-decolation-link{
   text-decoration: none;
-  color: inherit;
+  color: #464646;
 }
 
-.no-decolationed-link:hover{
+.no-decolation-link:hover{
   text-decoration: none;
 }
 
 .no-comment-text {
   color: #999;
   font-style: italic;
+}
+
+.mini-font-size {
+  font-size: 14px;
 }
 
 @media screen and (max-width: 600px) {
