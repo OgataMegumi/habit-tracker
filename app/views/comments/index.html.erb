@@ -1,6 +1,9 @@
 <div class="comment-page-container">
   <div class="comment-wrapper">
     <h2 class="main-title">Comments</h2>
+    <i class="fa-solid fa-pen"></i>
+    <%= link_to "ユーザー名の変更", edit_user_path(current_user), class: "no-decolation-link mini-font-size" %>
+
     <hr>
 
     <% if @comments.empty? %>
@@ -9,7 +12,7 @@
       <% @comments.each do |comment| %>
         <div class="comments-list">
           <div class="comment-header">
-            <strong><%= comment.user.email %></strong>
+            <strong><%= comment.user.name %></strong>
 
             <%= link_to new_comment_path(parent_id: comment.id), class: "reply-link" do %>
               <i class="fa-regular fa-message" style="color: #9e9e9e; margin-right: 4px;"></i>
@@ -26,7 +29,7 @@
 
           <% comment.replies.each do |reply| %>
             <div class="reply">
-              <strong><%= reply.user.email %></strong>
+              <strong><%= reply.user.name %></strong>
               <p><%= reply.content %></p>
             </div>
           <% end %>

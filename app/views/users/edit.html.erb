@@ -1,0 +1,18 @@
+<div class="change-username-container">
+  <h1>ユーザー名の変更</h1>
+
+  <%= form_with(model: @user, url: user_path, method: :patch, local: true) do |form| %>
+    <div class="input-container">
+      <%= form.label :name, "名前" %>
+      <%= form.text_field :name, class: "input-form" %>
+    </div>
+
+    <div class="button-group">
+      <%= form.submit "更新する" %>
+
+      <div class="top-padding">
+        <i class="fa-solid fa-chevron-left" style="color: #9e9e9e;"></i>
+        <%= link_to 'back', comments_path, class: "no-decolation-link" %>
+      </div>
+  <% end %>
+</div>
