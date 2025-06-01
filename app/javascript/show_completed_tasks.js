@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleBtn.addEventListener('click', () => {
     const isCurrentlyVisible = getComputedStyle(taskList).display !== 'none';
     const shouldShow = !isCurrentlyVisible;
+    const currentUserId = document.querySelector('meta[name="current-user-id"]').content;
 
     taskList.style.display = shouldShow ? originalDisplay : 'none';
 
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ? '<i class="fa-solid fa-toggle-on fa-lg" style="color: #afafaf;"></i>'
       : '<i class="fa-solid fa-toggle-off fa-lg" style="color: #afafaf;"></i>';
 
-    fetch('/user/toggle_completed_tasks', {
+    fetch(`/users/${currentUserId}/toggle_completed_tasks`, {
       method: 'PATCH',
       headers: {
         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
