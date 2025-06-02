@@ -7,13 +7,13 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  before_validation :set_default_name, if: -> { name.blank? && email.present? }
+  before_validation :set_default_name, if: -> { name.blank? }
 
   validates :name, presence: true
 
   private
 
   def set_default_name
-    self.name = email.split("@").first
+    self.name = email&.split("@")&.first || "やるるさん"
   end
 end
