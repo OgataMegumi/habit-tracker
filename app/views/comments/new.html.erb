@@ -10,10 +10,6 @@
       <%= f.submit '投稿', class: "comment-submit-button" %>
     <% end %>
 
-    <% if notice %>
-      <p style="color: green;"><%= notice %></p>
-    <% end %>
-
     <div style="margin-top: 1rem;">
       <i class="fa-solid fa-chevron-left" style="color: #9e9e9e;"></i>
       <%= link_to 'back', comments_path, class: "no-decolation-link" %>
